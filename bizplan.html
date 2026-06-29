@@ -15,26 +15,33 @@
   .nav-back:hover{color:#1D9E75;}
   .container{max-width:960px;margin:0 auto;padding:48px 24px 64px;}
 
-  /* 헤더 */
   .page-header{margin-bottom:44px;}
   .header-label{font-size:11px;font-weight:500;color:#1D9E75;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;}
   .header-title{font-size:32px;font-weight:600;color:#1D1D1F;letter-spacing:-1px;line-height:1.2;margin-bottom:8px;}
   .header-sub{font-size:14px;color:#86868B;font-weight:300;margin-bottom:24px;}
 
+  /* 환율 배너 */
+  .rate-banner{background:#1D1D1F;border-radius:16px;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:12px;}
+  .rate-left{display:flex;align-items:center;gap:16px;}
+  .rate-icon{font-size:24px;}
+  .rate-title{font-size:12px;font-weight:500;color:#86868B;margin-bottom:3px;}
+  .rate-formula{font-size:16px;font-weight:600;color:#A8F0D0;letter-spacing:0.3px;}
+  .rate-pills{display:flex;gap:8px;flex-wrap:wrap;}
+  .rate-pill{background:rgba(255,255,255,0.08);border:0.5px solid rgba(255,255,255,0.15);border-radius:20px;padding:6px 14px;font-size:12px;color:#F5F5F7;font-weight:300;}
+  .rate-pill strong{font-weight:600;color:#A8F0D0;}
+
   /* 핵심 개념 */
-  .concept-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:40px;}
+  .concept-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:36px;}
   .concept-card{background:#fff;border:1px solid #E5E5EA;border-radius:14px;padding:18px 20px;}
   .concept-icon{font-size:22px;margin-bottom:8px;}
   .concept-title{font-size:12px;font-weight:600;color:#1D1D1F;margin-bottom:5px;}
   .concept-desc{font-size:12px;color:#86868B;line-height:1.6;font-weight:300;}
 
-  /* 시나리오 탭 */
+  /* 탭 */
   .scenario-tabs{display:flex;gap:6px;margin-bottom:24px;flex-wrap:wrap;}
   .stab{padding:7px 16px;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid #E5E5EA;background:#fff;color:#86868B;font-family:'Noto Sans KR',sans-serif;transition:all .15s;}
   .stab.active{background:#1D9E75;border-color:#1D9E75;color:#fff;}
   .stab:hover:not(.active){background:#F5F5F7;}
-
-  /* 시나리오 패널 */
   .scenario-panel{display:none;}
   .scenario-panel.active{display:block;}
 
@@ -45,97 +52,84 @@
   .s-desc{font-size:13px;color:#86868B;font-weight:300;line-height:1.7;}
   .s-body{padding:28px;}
 
-  /* 인포그래픽 레이아웃 */
-  .infographic{display:grid;gap:24px;}
+  .infographic{display:grid;gap:20px;}
   .infographic.two-col{grid-template-columns:1fr 1fr;}
-  .infographic.three-col{grid-template-columns:1fr 1fr 1fr;}
 
-  /* BC 트리 */
-  .bc-wrap{display:flex;flex-direction:column;align-items:center;}
-  .bc-label{font-size:10px;font-weight:600;color:#86868B;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;}
-  .bc-node{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;margin:0 auto;}
-  .bc-me{background:#1D9E75;}
-  .bc-p{background:#5B7CF0;}
-  .bc-2{background:#FF6B35;}
-  .bc-3{background:#9B59B6;}
-  .bc-empty{background:#E5E5EA;color:#86868B;}
-  .bc-node-label{font-size:10px;color:#86868B;margin-top:4px;text-align:center;}
-  .bc-node-pts{font-size:11px;font-weight:600;color:#1D9E75;text-align:center;}
-
-  /* 트리 SVG 컨테이너 */
-  .tree-container{position:relative;width:100%;}
-  .tree-svg{width:100%;overflow:visible;}
-
-  /* 포인트 박스 */
-  .pts-box{border-radius:10px;padding:12px 16px;margin-bottom:12px;}
-  .pts-box.left{background:#E8F4FF;border:1px solid #C0D8F5;}
-  .pts-box.right{background:#FFF3E8;border:1px solid #F5D0A8;}
-  .pts-box.neutral{background:#F0FBF6;border:1px solid #B8E8D4;}
-  .pts-box-label{font-size:10px;font-weight:600;color:#86868B;letter-spacing:0.5px;margin-bottom:4px;}
-  .pts-box-val{font-size:20px;font-weight:600;color:#1D1D1F;}
-  .pts-box-sub{font-size:11px;color:#86868B;margin-top:2px;font-weight:300;}
+  /* BC 구조 박스 */
+  .bc-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;background:#F5F5F7;border-radius:14px;padding:18px;margin-bottom:18px;}
+  .bc-box{background:#fff;border-radius:12px;padding:14px;text-align:center;}
+  .bc-box.active-bc{border:1.5px solid #1D9E75;}
+  .bc-box.empty-bc{border:1px dashed #E5E5EA;}
+  .bc-title{font-size:10px;font-weight:600;letter-spacing:1px;margin-bottom:8px;}
+  .bc-sides{display:flex;justify-content:space-around;align-items:center;margin-bottom:8px;}
+  .bc-side{text-align:center;}
+  .bc-side-lbl{font-size:9px;font-weight:600;margin-bottom:3px;}
+  .bc-side-pts{font-size:15px;font-weight:700;}
+  .bc-sep{width:1px;height:30px;background:#F2F2F7;}
+  .bc-result{font-size:11px;font-weight:600;margin-top:4px;}
+  .bc-result-sub{font-size:10px;color:#86868B;margin-top:2px;}
 
   /* 계산 박스 */
   .calc-box{background:#1D1D1F;border-radius:14px;padding:20px 22px;}
-  .calc-title{font-size:10px;font-weight:600;color:#636366;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;}
-  .calc-formula{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;}
-  .calc-item{text-align:center;}
+  .calc-title{font-size:10px;font-weight:600;color:#636366;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;}
+  .calc-steps{display:flex;flex-direction:column;gap:10px;}
+  .calc-step{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
   .calc-num{font-size:18px;font-weight:600;color:#A8F0D0;}
-  .calc-lbl{font-size:9px;color:#636366;margin-top:2px;}
-  .calc-op{font-size:18px;color:#1D9E75;font-weight:300;}
-  .calc-result{font-size:22px;font-weight:700;color:#A8F0D0;}
-  .calc-result-lbl{font-size:10px;color:#636366;margin-top:2px;}
+  .calc-lbl{font-size:9px;color:#636366;margin-top:2px;text-align:center;}
+  .calc-op{font-size:18px;color:#3A3A3C;font-weight:300;}
+  .calc-sep{width:100%;height:0.5px;background:#2D2D2D;}
+  .calc-krw-row{display:flex;align-items:center;justify-content:space-between;padding-top:2px;}
+  .calc-krw-lbl{font-size:11px;color:#636366;}
+  .calc-krw-val{font-size:15px;font-weight:600;color:#FFD98A;}
   .calc-note{font-size:11px;color:#636366;line-height:1.6;margin-top:10px;padding-top:10px;border-top:1px solid #2D2D2D;}
 
   /* 총합 카드 */
-  .total-card{background:linear-gradient(135deg,#0F6E50,#1D9E75);border-radius:16px;padding:24px;text-align:center;}
+  .total-card{border-radius:16px;padding:22px;text-align:center;}
+  .total-card.green{background:linear-gradient(135deg,#0F6E50,#1D9E75);}
+  .total-card.red{background:linear-gradient(135deg,#8B1A1A,#CC0000);}
   .total-label{font-size:10px;font-weight:600;color:rgba(255,255,255,0.6);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
-  .total-num{font-size:36px;font-weight:700;color:#fff;line-height:1;}
-  .total-unit{font-size:14px;font-weight:400;color:rgba(255,255,255,0.8);margin-top:4px;}
+  .total-pts{font-size:32px;font-weight:700;color:#fff;line-height:1;}
+  .total-pts-unit{font-size:12px;color:rgba(255,255,255,0.7);margin-top:2px;}
+  .total-divider{width:40px;height:1px;background:rgba(255,255,255,0.2);margin:10px auto;}
+  .total-krw{font-size:22px;font-weight:600;color:#FFD98A;}
+  .total-krw-unit{font-size:11px;color:rgba(255,255,255,0.5);margin-top:2px;}
 
-  /* 롤업 섹션 */
-  .rollup-section{background:#F5F5F7;border-radius:12px;padding:16px 20px;margin-top:16px;}
+  /* 롤업 */
+  .rollup-section{background:#F5F5F7;border-radius:12px;padding:16px 20px;}
   .rollup-title{font-size:11px;font-weight:600;color:#1D9E75;letter-spacing:0.5px;margin-bottom:10px;}
-  .rollup-row{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#3A3A3C;padding:5px 0;border-bottom:0.5px solid #E5E5EA;}
+  .rollup-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:0.5px solid #E5E5EA;}
   .rollup-row:last-child{border-bottom:none;}
-  .rollup-key{font-weight:300;}
-  .rollup-val{font-weight:600;color:#1D1D1F;}
+  .rollup-key{font-size:12px;color:#3A3A3C;font-weight:300;}
+  .rollup-val{font-size:12px;font-weight:600;color:#1D1D1F;}
+  .rollup-krw{font-size:11px;color:#86868B;font-weight:300;}
 
-  /* 팁 배너 */
-  .tip-banner{background:#FFF9E6;border:1px solid #FFE5A0;border-radius:12px;padding:14px 20px;display:flex;gap:10px;align-items:flex-start;margin-top:16px;}
-  .tip-text{font-size:12.5px;color:#6B5200;line-height:1.6;font-weight:300;}
-  .tip-text strong{font-weight:500;color:#4A3800;}
+  /* pts 박스 */
+  .pts-box{border-radius:10px;padding:12px 16px;margin-bottom:10px;}
+  .pts-box.left{background:#E8F4FF;border:1px solid #C0D8F5;}
+  .pts-box.right{background:#FFF3E8;border:1px solid #F5D0A8;}
+  .pts-box-label{font-size:10px;font-weight:600;color:#86868B;letter-spacing:0.5px;margin-bottom:4px;}
+  .pts-box-val{font-size:22px;font-weight:600;color:#1D1D1F;}
+  .pts-box-sub{font-size:11px;color:#86868B;margin-top:2px;font-weight:300;}
 
   /* 비교 테이블 */
-  .compare-table{width:100%;border-collapse:collapse;margin-top:8px;}
+  .compare-table{width:100%;border-collapse:collapse;}
   .compare-table th{background:#1D1D1F;color:#A8F0D0;font-size:11px;font-weight:600;padding:10px 14px;text-align:center;letter-spacing:0.5px;}
   .compare-table th:first-child{text-align:left;border-radius:10px 0 0 0;}
   .compare-table th:last-child{border-radius:0 10px 0 0;}
-  .compare-table td{padding:11px 14px;font-size:12.5px;color:#3A3A3C;border-bottom:0.5px solid #F2F2F7;text-align:center;font-weight:300;}
+  .compare-table td{padding:11px 14px;font-size:12px;color:#3A3A3C;border-bottom:0.5px solid #F2F2F7;text-align:center;font-weight:300;}
   .compare-table td:first-child{text-align:left;font-weight:500;}
   .compare-table tr:hover td{background:#F5F5F7;}
-  .compare-table .highlight{color:#1D9E75;font-weight:600;}
+  .compare-table .hi{color:#1D9E75;font-weight:600;}
+  .compare-table .hi-krw{color:#C47E00;font-size:11px;}
+
+  .tip-banner{background:#FFF9E6;border:1px solid #FFE5A0;border-radius:12px;padding:14px 20px;display:flex;gap:10px;align-items:flex-start;margin-top:14px;}
+  .tip-text{font-size:12.5px;color:#6B5200;line-height:1.6;font-weight:300;}
+  .tip-text strong{font-weight:500;color:#4A3800;}
 
   .footer{text-align:center;padding:36px 0 20px;font-size:11px;color:#C7C7CC;}
 
-  /* 배지 */
-  .badge{display:inline-block;font-size:10px;font-weight:500;padding:3px 10px;border-radius:20px;background:#E1F5EE;color:#1D9E75;margin-left:8px;}
-  .badge.blue{background:#E8F0FF;color:#3355CC;}
-  .badge.orange{background:#FFF0E8;color:#CC5500;}
-
-  /* 트리 그래픽 */
-  .tree-visual{display:flex;flex-direction:column;align-items:center;gap:0;position:relative;}
-  .tree-row{display:flex;justify-content:center;gap:0;position:relative;width:100%;}
-  .tree-node{display:flex;flex-direction:column;align-items:center;padding:0 12px;}
-  .node-circle{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#fff;flex-shrink:0;}
-  .node-name{font-size:10px;color:#86868B;margin-top:4px;text-align:center;white-space:nowrap;}
-  .node-pts{font-size:11px;font-weight:600;margin-top:2px;text-align:center;}
-  .tree-connector{display:flex;width:100%;justify-content:center;position:relative;height:28px;}
-  .tree-connector::before{content:'';position:absolute;top:0;left:50%;width:0;height:100%;border-left:1.5px dashed #E5E5EA;}
-  .tree-connector-h{position:absolute;top:0;height:1px;background:#E5E5EA;}
-  .side-label{font-size:10px;font-weight:600;letter-spacing:1px;padding:2px 8px;border-radius:10px;margin-bottom:6px;}
-  .side-left{background:#EFF6FF;color:#2563EB;}
-  .side-right{background:#FFF7ED;color:#C2410C;}
+  /* 이월 뱃지 */
+  .carry-badge{display:inline-block;font-size:10px;font-weight:500;padding:3px 10px;border-radius:10px;background:#FFF3CD;color:#856404;border:1px solid #FFE082;margin-left:6px;}
 </style>
 </head>
 <body>
@@ -148,11 +142,28 @@
 
 <div class="container">
 
-  <!-- 헤더 -->
   <div class="page-header">
     <div class="header-label">USANA MAMA · Business Center</div>
     <div class="header-title">비즈니스 센터 수익 구조 이해</div>
-    <div class="header-sub">7가지 시나리오로 배우는 후원수당 계산법 — How Business Centers Work</div>
+    <div class="header-sub">7가지 시나리오 × 원화 환산으로 쉽게 이해하기</div>
+  </div>
+
+  <!-- 환율 배너 -->
+  <div class="rate-banner">
+    <div class="rate-left">
+      <div class="rate-icon">💱</div>
+      <div>
+        <div class="rate-title">고정 환율 기준</div>
+        <div class="rate-formula">후원수당점수 1pt = $1 USD = 1,150원</div>
+      </div>
+    </div>
+    <div class="rate-pills">
+      <div class="rate-pill">50pts = <strong>57,500원</strong></div>
+      <div class="rate-pill">80pts = <strong>92,000원</strong></div>
+      <div class="rate-pill">100pts = <strong>115,000원</strong></div>
+      <div class="rate-pill">220pts = <strong>253,000원</strong></div>
+      <div class="rate-pill">260pts = <strong>299,000원</strong></div>
+    </div>
   </div>
 
   <!-- 핵심 개념 -->
@@ -174,7 +185,7 @@
     </div>
   </div>
 
-  <!-- 시나리오 탭 -->
+  <!-- 탭 -->
   <div class="scenario-tabs">
     <button class="stab active" onclick="showS(1,this)">시나리오 1</button>
     <button class="stab" onclick="showS(2,this)">시나리오 2</button>
@@ -191,53 +202,48 @@
       <div class="s-header">
         <div class="s-num">SCENARIO 01</div>
         <div class="s-title">유사나 비즈니스의 시작</div>
-        <div class="s-desc">BC 1개 활성화 · 팀원 2명 등록 · 양쪽 각 400포인트 창출</div>
+        <div class="s-desc">BC 1개 · 질(왼쪽) 400pts · 밥(오른쪽) 400pts → 완벽 매칭</div>
       </div>
       <div class="s-body">
         <div class="infographic two-col">
           <div>
-            <div class="bc-label" style="text-align:center;font-size:11px;font-weight:600;color:#1D9E75;margin-bottom:16px;">📊 팀 구조</div>
-            <!-- 트리 -->
-            <div class="tree-visual">
-              <div class="tree-node"><div class="node-circle bc-me">나</div><div class="node-name">BC 1 (활성화)</div></div>
-              <div style="height:24px;width:2px;background:#E5E5EA;margin:0 auto;"></div>
-              <div style="display:flex;gap:40px;position:relative;">
-                <div style="position:absolute;top:0;left:25%;width:50%;height:1px;background:#E5E5EA;"></div>
-                <div class="tree-node" style="padding-top:0;">
-                  <span class="side-label side-left">왼쪽</span>
-                  <div class="node-circle" style="background:#3B82F6;">질</div>
-                  <div class="node-name">왼쪽 팀</div>
-                  <div class="node-pts" style="color:#3B82F6;">400 pts</div>
-                </div>
-                <div class="tree-node" style="padding-top:0;">
-                  <span class="side-label side-right">오른쪽</span>
-                  <div class="node-circle" style="background:#F97316;">밥</div>
-                  <div class="node-name">오른쪽 팀</div>
-                  <div class="node-pts" style="color:#F97316;">400 pts</div>
-                </div>
-              </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;">
+              <div class="pts-box left"><div class="pts-box-label">왼쪽 (질)</div><div class="pts-box-val">400pts</div><div class="pts-box-sub">그룹 실적점수</div></div>
+              <div class="pts-box right"><div class="pts-box-label">오른쪽 (밥)</div><div class="pts-box-val">400pts</div><div class="pts-box-sub">그룹 실적점수</div></div>
             </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px;">
-              <div class="pts-box left"><div class="pts-box-label">왼쪽 (질)</div><div class="pts-box-val">400</div><div class="pts-box-sub">그룹 실적점수</div></div>
-              <div class="pts-box right"><div class="pts-box-label">오른쪽 (밥)</div><div class="pts-box-val">400</div><div class="pts-box-sub">그룹 실적점수</div></div>
+            <div class="rollup-section">
+              <div class="rollup-title">계산 과정</div>
+              <div class="rollup-row"><div class="rollup-key">매칭 기준 포인트</div><div class="rollup-val">400pts (양쪽 동일)</div></div>
+              <div class="rollup-row"><div class="rollup-key">후원수당 비율</div><div class="rollup-val">× 20%</div></div>
+              <div class="rollup-row"><div class="rollup-key">이월 포인트</div><div class="rollup-val">0pts (완벽 매칭)</div></div>
             </div>
           </div>
           <div>
             <div class="calc-box">
               <div class="calc-title">후원수당 계산</div>
-              <div class="calc-formula">
-                <div class="calc-item"><div class="calc-num">400</div><div class="calc-lbl">매칭 포인트</div></div>
-                <div class="calc-op">×</div>
-                <div class="calc-item"><div class="calc-num">20%</div><div class="calc-lbl">후원수당 비율</div></div>
-                <div class="calc-op">=</div>
-                <div class="calc-item"><div class="calc-result">80</div><div class="calc-result-lbl">후원수당점수</div></div>
+              <div class="calc-steps">
+                <div class="calc-step">
+                  <div style="text-align:center"><div class="calc-num">400</div><div class="calc-lbl">매칭pts</div></div>
+                  <div class="calc-op">×</div>
+                  <div style="text-align:center"><div class="calc-num">20%</div><div class="calc-lbl">후원수당 비율</div></div>
+                  <div class="calc-op">=</div>
+                  <div style="text-align:center"><div class="calc-num" style="color:#FFD98A;">80pts</div><div class="calc-lbl">후원수당점수</div></div>
+                </div>
+                <div class="calc-sep"></div>
+                <div class="calc-krw-row">
+                  <div class="calc-krw-lbl">80pts × 1,150원</div>
+                  <div class="calc-krw-val">= 92,000원</div>
+                </div>
               </div>
-              <div class="calc-note">✅ 양쪽이 400포인트로 완벽하게 매칭되어 이월 포인트 없음</div>
+              <div class="calc-note">✅ 양쪽 완벽 매칭 · 이월 포인트 없음</div>
             </div>
-            <div class="total-card" style="margin-top:14px;">
-              <div class="total-label">이번 주 총 후원수당</div>
-              <div class="total-num">80</div>
-              <div class="total-unit">후원수당점수</div>
+            <div class="total-card green" style="margin-top:14px;">
+              <div class="total-label">이번 주 수령액</div>
+              <div class="total-pts">80pts</div>
+              <div class="total-pts-unit">후원수당점수</div>
+              <div class="total-divider"></div>
+              <div class="total-krw">92,000원</div>
+              <div class="total-krw-unit">원화 환산 (×1,150)</div>
             </div>
           </div>
         </div>
@@ -251,41 +257,46 @@
       <div class="s-header">
         <div class="s-num">SCENARIO 02</div>
         <div class="s-title">한쪽이 더 빨리 성장하고 있어요</div>
-        <div class="s-desc">밥(오른쪽) 600pts · 질(왼쪽) 400pts → 더 낮은 쪽 기준 계산</div>
+        <div class="s-desc">질(왼쪽) 400pts · 밥(오른쪽) 600pts → 낮은 쪽 기준 계산 · 200pts 이월</div>
       </div>
       <div class="s-body">
         <div class="infographic two-col">
           <div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;">
-              <div class="pts-box left"><div class="pts-box-label">왼쪽 (질)</div><div class="pts-box-val">400</div><div class="pts-box-sub">⬅ 기준 포인트</div></div>
-              <div class="pts-box right"><div class="pts-box-label">오른쪽 (밥)</div><div class="pts-box-val">600</div><div class="pts-box-sub">더 높은 쪽</div></div>
+              <div class="pts-box left"><div class="pts-box-label">왼쪽 (질) ← 기준</div><div class="pts-box-val" style="color:#3B82F6;">400pts</div><div class="pts-box-sub">⬅ 더 낮은 쪽</div></div>
+              <div class="pts-box right"><div class="pts-box-label">오른쪽 (밥)</div><div class="pts-box-val" style="color:#F97316;">600pts</div><div class="pts-box-sub">더 높은 쪽</div></div>
+            </div>
+            <div class="rollup-section">
+              <div class="rollup-title">포인트 현황</div>
+              <div class="rollup-row"><div class="rollup-key">매칭 기준</div><div class="rollup-val">400pts (질 쪽)</div></div>
+              <div class="rollup-row"><div class="rollup-key">밥 이월 포인트</div><div class="rollup-val">+200pts <span class="carry-badge">다음 주 이월</span></div></div>
             </div>
             <div class="tip-banner">
               <div>💡</div>
-              <div class="tip-text">후원수당은 <strong>더 낮은 점수(400pts)</strong>를 기준으로 계산됩니다. 밥의 여분 200pts는 다음 주로 이월!</div>
-            </div>
-            <div class="rollup-section" style="margin-top:14px;">
-              <div class="rollup-title">이월 포인트</div>
-              <div class="rollup-row"><div class="rollup-key">매칭 후 밥 남은 포인트</div><div class="rollup-val" style="color:#F97316;">+200 pts 이월</div></div>
-              <div class="rollup-row"><div class="rollup-key">질 남은 포인트</div><div class="rollup-val">0 pts</div></div>
+              <div class="tip-text">밥의 여분 <strong>200pts는 소멸되지 않고</strong> 다음 주 계산에 더해집니다!</div>
             </div>
           </div>
           <div>
             <div class="calc-box">
               <div class="calc-title">후원수당 계산</div>
-              <div class="calc-formula">
-                <div class="calc-item"><div class="calc-num">400</div><div class="calc-lbl">매칭 기준(낮은 쪽)</div></div>
-                <div class="calc-op">×</div>
-                <div class="calc-item"><div class="calc-num">20%</div><div class="calc-lbl">후원수당 비율</div></div>
-                <div class="calc-op">=</div>
-                <div class="calc-item"><div class="calc-result">80</div><div class="calc-result-lbl">후원수당점수</div></div>
+              <div class="calc-steps">
+                <div class="calc-step">
+                  <div style="text-align:center"><div class="calc-num">400</div><div class="calc-lbl">기준pts(낮은쪽)</div></div>
+                  <div class="calc-op">×</div>
+                  <div style="text-align:center"><div class="calc-num">20%</div><div class="calc-lbl">비율</div></div>
+                  <div class="calc-op">=</div>
+                  <div style="text-align:center"><div class="calc-num" style="color:#FFD98A;">80pts</div><div class="calc-lbl">후원수당</div></div>
+                </div>
+                <div class="calc-sep"></div>
+                <div class="calc-krw-row"><div class="calc-krw-lbl">80pts × 1,150원</div><div class="calc-krw-val">= 92,000원</div></div>
               </div>
-              <div class="calc-note">⚠️ 밥의 여분 200pts는 소멸되지 않고 다음 주로 이월됩니다</div>
+              <div class="calc-note">⚠️ 밥 여분 200pts → 이월 (200 × 1,150 = 230,000원 잠재가치)</div>
             </div>
-            <div class="total-card" style="margin-top:14px;">
-              <div class="total-label">이번 주 총 후원수당</div>
-              <div class="total-num">80</div>
-              <div class="total-unit">후원수당점수</div>
+            <div class="total-card green" style="margin-top:14px;">
+              <div class="total-label">이번 주 수령액</div>
+              <div class="total-pts">80pts</div><div class="total-pts-unit">후원수당점수</div>
+              <div class="total-divider"></div>
+              <div class="total-krw">92,000원</div><div class="total-krw-unit">+ 이월 230,000원 잠재가치</div>
             </div>
           </div>
         </div>
@@ -299,39 +310,45 @@
       <div class="s-header">
         <div class="s-num">SCENARIO 03</div>
         <div class="s-title">한쪽에는 판매 활동이 없어요</div>
-        <div class="s-desc">질(왼쪽) 성장 중 · 밥(오른쪽) 0pts → 후원수당 발생 없음</div>
+        <div class="s-desc">질(왼쪽) 성장 중 · 밥(오른쪽) 0pts → 후원수당 0원</div>
       </div>
       <div class="s-body">
         <div class="infographic two-col">
           <div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;">
               <div class="pts-box left"><div class="pts-box-label">왼쪽 (질)</div><div class="pts-box-val" style="color:#3B82F6;">성장 중</div><div class="pts-box-sub">꾸준히 증가</div></div>
-              <div class="pts-box right"><div class="pts-box-label">오른쪽 (밥)</div><div class="pts-box-val" style="color:#C0C0C0;">0</div><div class="pts-box-sub">활동 없음</div></div>
+              <div class="pts-box right"><div class="pts-box-label">오른쪽 (밥)</div><div class="pts-box-val" style="color:#C0C0C0;">0pts</div><div class="pts-box-sub">활동 없음</div></div>
             </div>
-            <div style="background:#FFF0F0;border:1px solid #FFCCCC;border-radius:12px;padding:14px 18px;">
-              <div style="font-size:12px;font-weight:600;color:#CC0000;margin-bottom:6px;">❌ 후원수당 미발생</div>
-              <div style="font-size:12px;color:#8B1A1A;line-height:1.7;font-weight:300;">매칭 포인트가 없으면 후원수당이 지급되지 않습니다. <strong>양쪽 모두 실적이 있어야 합니다.</strong></div>
+            <div style="background:#FFF0F0;border:1px solid #FFCCCC;border-radius:12px;padding:16px 18px;">
+              <div style="font-size:12px;font-weight:600;color:#CC0000;margin-bottom:6px;">❌ 후원수당 0원</div>
+              <div style="font-size:12px;color:#8B1A1A;line-height:1.7;font-weight:300;">매칭 포인트가 없으면 아무리 한쪽이 높아도 수익이 발생하지 않습니다. <strong>양쪽 모두 실적이 필요합니다.</strong></div>
             </div>
-            <div class="tip-banner" style="margin-top:12px;">
+            <div class="tip-banner">
               <div>💡</div>
-              <div class="tip-text"><strong>핵심 교훈</strong> — 한쪽 팀만 열심히 해서는 부족합니다. 양쪽 팀의 균형 있는 성장이 수입의 핵심입니다!</div>
+              <div class="tip-text"><strong>해결책</strong> — 밥이 제품 1개만 주문해도(최소 실적) 매칭이 시작됩니다!</div>
             </div>
           </div>
           <div>
             <div class="calc-box">
               <div class="calc-title">후원수당 계산</div>
-              <div class="calc-formula">
-                <div class="calc-item"><div class="calc-num" style="color:#FF6B6B;">0</div><div class="calc-lbl">매칭 포인트(밥 쪽)</div></div>
-                <div class="calc-op">×</div>
-                <div class="calc-item"><div class="calc-num">20%</div><div class="calc-lbl">후원수당 비율</div></div>
-                <div class="calc-op">=</div>
-                <div class="calc-item"><div class="calc-result" style="color:#FF6B6B;">0</div><div class="calc-result-lbl">후원수당점수</div></div>
+              <div class="calc-steps">
+                <div class="calc-step">
+                  <div style="text-align:center"><div class="calc-num" style="color:#FF6B6B;">0</div><div class="calc-lbl">기준pts(밥 쪽)</div></div>
+                  <div class="calc-op">×</div>
+                  <div style="text-align:center"><div class="calc-num">20%</div><div class="calc-lbl">비율</div></div>
+                  <div class="calc-op">=</div>
+                  <div style="text-align:center"><div class="calc-num" style="color:#FF6B6B;">0pts</div><div class="calc-lbl">후원수당</div></div>
+                </div>
+                <div class="calc-sep"></div>
+                <div class="calc-krw-row"><div class="calc-krw-lbl">0pts × 1,150원</div><div class="calc-krw-val" style="color:#FF6B6B;">= 0원</div></div>
               </div>
-              <div class="calc-note">❌ 오른쪽 실적이 0이므로 매칭되는 포인트가 없어 후원수당 미발생</div>
+              <div class="calc-note">❌ 오른쪽 0pts → 매칭 불가 → 수익 없음</div>
             </div>
-            <div style="background:#F0FBF6;border:1px solid #B8E8D4;border-radius:14px;padding:20px;margin-top:14px;text-align:center;">
-              <div style="font-size:11px;font-weight:600;color:#86868B;letter-spacing:1px;margin-bottom:6px;">해결책</div>
-              <div style="font-size:13px;color:#0F6E50;font-weight:500;line-height:1.6;">밥을 온보딩하고 제품 구매 & 판매 시작하도록 지원하기</div>
+            <div class="total-card red" style="margin-top:14px;">
+              <div class="total-label">이번 주 수령액</div>
+              <div class="total-pts">0pts</div><div class="total-pts-unit">후원수당점수</div>
+              <div class="total-divider"></div>
+              <div class="total-krw">0원</div><div class="total-krw-unit">양쪽 균형이 핵심!</div>
             </div>
           </div>
         </div>
@@ -344,71 +361,57 @@
     <div class="s-card">
       <div class="s-header">
         <div class="s-num">SCENARIO 04</div>
-        <div class="s-title">BC 3개 활성화 — 2명의 팀원 배치</div>
-        <div class="s-desc">BC2에 질(400)+밥(600) 배치 · BC3은 비어있음 → BC1에 롤업</div>
+        <div class="s-title">BC 3개 활성화 — 2명 배치 (BC2에 집중)</div>
+        <div class="s-desc">질+밥 → BC2 · BC3 비어있음 → BC1 우측 0pts → BC1 수익 없음</div>
       </div>
       <div class="s-body">
-        <!-- 3BC 구조 시각화 -->
-        <div style="background:#F5F5F7;border-radius:14px;padding:20px;margin-bottom:20px;">
-          <div style="font-size:11px;font-weight:600;color:#86868B;letter-spacing:1px;margin-bottom:16px;text-transform:uppercase;">팀 배치 구조</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;">
-            <!-- BC1 -->
-            <div style="background:#fff;border:1.5px dashed #1D9E75;border-radius:12px;padding:14px;text-align:center;">
-              <div style="font-size:10px;font-weight:600;color:#1D9E75;margin-bottom:8px;">BC 1 (롤업)</div>
-              <div style="display:flex;justify-content:space-around;margin-bottom:8px;">
-                <div><div style="font-size:10px;color:#3B82F6;">왼쪽</div><div style="font-size:14px;font-weight:600;color:#3B82F6;">1,000</div></div>
-                <div style="font-size:16px;color:#E5E5EA;">|</div>
-                <div><div style="font-size:10px;color:#F97316;">오른쪽</div><div style="font-size:14px;font-weight:600;color:#C0C0C0;">0</div></div>
-              </div>
-              <div style="font-size:11px;color:#CC0000;font-weight:500;">후원수당 미발생</div>
-              <div style="font-size:10px;color:#86868B;margin-top:4px;">우측 실적 없음</div>
+        <div class="bc-grid">
+          <div class="bc-box" style="border:1.5px dashed #CC0000;">
+            <div class="bc-title" style="color:#CC0000;">BC 1 (롤업)</div>
+            <div class="bc-sides">
+              <div class="bc-side"><div class="bc-side-lbl" style="color:#3B82F6;">왼쪽</div><div class="bc-side-pts" style="color:#3B82F6;">1,000</div></div>
+              <div class="bc-sep"></div>
+              <div class="bc-side"><div class="bc-side-lbl" style="color:#C0C0C0;">오른쪽</div><div class="bc-side-pts" style="color:#C0C0C0;">0</div></div>
             </div>
-            <!-- BC2 -->
-            <div style="background:#fff;border:1px solid #E5E5EA;border-radius:12px;padding:14px;text-align:center;">
-              <div style="font-size:10px;font-weight:600;color:#5B7CF0;margin-bottom:8px;">BC 2</div>
-              <div style="display:flex;justify-content:space-around;margin-bottom:8px;">
-                <div><div style="font-size:10px;color:#3B82F6;">질</div><div style="font-size:14px;font-weight:600;color:#3B82F6;">400</div></div>
-                <div style="font-size:16px;color:#E5E5EA;">|</div>
-                <div><div style="font-size:10px;color:#F97316;">밥</div><div style="font-size:14px;font-weight:600;color:#F97316;">600</div></div>
-              </div>
-              <div style="font-size:12px;color:#1D9E75;font-weight:600;">80pts 발생</div>
-              <div style="font-size:10px;color:#86868B;margin-top:4px;">400 × 20%</div>
+            <div class="bc-result" style="color:#CC0000;">❌ 0원</div>
+            <div class="bc-result-sub">우측 실적 없음</div>
+          </div>
+          <div class="bc-box active-bc">
+            <div class="bc-title" style="color:#1D9E75;">BC 2 ✅</div>
+            <div class="bc-sides">
+              <div class="bc-side"><div class="bc-side-lbl" style="color:#3B82F6;">질</div><div class="bc-side-pts" style="color:#3B82F6;">400</div></div>
+              <div class="bc-sep"></div>
+              <div class="bc-side"><div class="bc-side-lbl" style="color:#F97316;">밥</div><div class="bc-side-pts" style="color:#F97316;">600</div></div>
             </div>
-            <!-- BC3 -->
-            <div style="background:#fff;border:1px dashed #E5E5EA;border-radius:12px;padding:14px;text-align:center;">
-              <div style="font-size:10px;font-weight:600;color:#9B59B6;margin-bottom:8px;">BC 3</div>
-              <div style="display:flex;justify-content:space-around;margin-bottom:8px;">
-                <div><div style="font-size:10px;color:#C0C0C0;">왼쪽</div><div style="font-size:14px;font-weight:600;color:#C0C0C0;">0</div></div>
-                <div style="font-size:16px;color:#E5E5EA;">|</div>
-                <div><div style="font-size:10px;color:#C0C0C0;">오른쪽</div><div style="font-size:14px;font-weight:600;color:#C0C0C0;">0</div></div>
-              </div>
-              <div style="font-size:11px;color:#86868B;">팀원 미배치</div>
+            <div class="bc-result" style="color:#1D9E75;">80pts</div>
+            <div class="bc-result-sub">= 92,000원</div>
+          </div>
+          <div class="bc-box empty-bc">
+            <div class="bc-title" style="color:#9B59B6;">BC 3</div>
+            <div class="bc-sides">
+              <div class="bc-side"><div class="bc-side-lbl" style="color:#C0C0C0;">왼쪽</div><div class="bc-side-pts" style="color:#C0C0C0;">0</div></div>
+              <div class="bc-sep"></div>
+              <div class="bc-side"><div class="bc-side-lbl" style="color:#C0C0C0;">오른쪽</div><div class="bc-side-pts" style="color:#C0C0C0;">0</div></div>
             </div>
+            <div class="bc-result" style="color:#C0C0C0;">팀원 미배치</div>
           </div>
         </div>
         <div class="infographic two-col">
           <div>
-            <div class="calc-box">
-              <div class="calc-title">BC 2 후원수당</div>
-              <div class="calc-formula">
-                <div class="calc-item"><div class="calc-num">400</div><div class="calc-lbl">매칭(낮은쪽=질)</div></div>
-                <div class="calc-op">×</div>
-                <div class="calc-item"><div class="calc-num">20%</div><div class="calc-lbl">비율</div></div>
-                <div class="calc-op">=</div>
-                <div class="calc-item"><div class="calc-result">80</div><div class="calc-result-lbl">후원수당pts</div></div>
-              </div>
-              <div class="calc-note">밥의 여분 200pts → 다음 주 이월<br>BC3는 실적 없어 후원수당 미발생<br>BC1 우측 0pts → BC1도 후원수당 미발생</div>
+            <div class="rollup-section">
+              <div class="rollup-title">BC별 수익 현황</div>
+              <div class="rollup-row"><div class="rollup-key">BC2: 400×20%=80pts</div><div class="rollup-val">92,000원 ✅</div></div>
+              <div class="rollup-row"><div class="rollup-key">BC3: 실적 없음</div><div class="rollup-val" style="color:#CC0000;">0원</div></div>
+              <div class="rollup-row"><div class="rollup-key">BC1: 우측 0pts</div><div class="rollup-val" style="color:#CC0000;">0원</div></div>
+              <div class="rollup-row" style="border-top:1.5px solid #1D9E75;margin-top:4px;padding-top:8px;"><div class="rollup-key" style="font-weight:600;">총 후원수당</div><div class="rollup-val" style="color:#1D9E75;">80pts / 92,000원</div></div>
             </div>
           </div>
           <div>
-            <div class="total-card">
-              <div class="total-label">이번 주 총 후원수당</div>
-              <div class="total-num">80</div>
-              <div class="total-unit">후원수당점수 (BC2에서만)</div>
-            </div>
-            <div class="tip-banner" style="margin-top:12px;">
-              <div>💡</div>
-              <div class="tip-text"><strong>BC3에 팀원을 배치하면</strong> BC1 우측도 채워져 추가 수입이 발생합니다!</div>
+            <div class="total-card green">
+              <div class="total-label">이번 주 수령액</div>
+              <div class="total-pts">80pts</div><div class="total-pts-unit">BC2에서만</div>
+              <div class="total-divider"></div>
+              <div class="total-krw">92,000원</div><div class="total-krw-unit">BC3 활용 시 더 증가 가능</div>
             </div>
           </div>
         </div>
@@ -421,62 +424,64 @@
     <div class="s-card">
       <div class="s-header">
         <div class="s-num">SCENARIO 05</div>
-        <div class="s-title">팀원 배치 전략의 차이</div>
-        <div class="s-desc">질 → BC2 왼쪽 · 밥 → BC3 오른쪽 배치 → BC1에서 수익 발생!</div>
+        <div class="s-title">배치 전략 변경 — BC1 롤업 활용</div>
+        <div class="s-desc">질 → BC2 왼쪽 · 밥 → BC3 오른쪽 → BC1에서 수익 발생!</div>
       </div>
       <div class="s-body">
-        <div style="background:#F5F5F7;border-radius:14px;padding:20px;margin-bottom:20px;">
-          <div style="font-size:11px;font-weight:600;color:#86868B;letter-spacing:1px;margin-bottom:16px;text-transform:uppercase;">✨ 전략적 배치</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;">
-            <div style="background:#fff;border:1.5px solid #1D9E75;border-radius:12px;padding:14px;text-align:center;">
-              <div style="font-size:10px;font-weight:600;color:#1D9E75;margin-bottom:8px;">BC 1 (롤업) ⭐</div>
-              <div style="display:flex;justify-content:space-around;margin-bottom:8px;">
-                <div><div style="font-size:10px;color:#3B82F6;">왼쪽</div><div style="font-size:14px;font-weight:600;color:#3B82F6;">400</div></div>
-                <div style="font-size:16px;color:#E5E5EA;">|</div>
-                <div><div style="font-size:10px;color:#F97316;">오른쪽</div><div style="font-size:14px;font-weight:600;color:#F97316;">600</div></div>
-              </div>
-              <div style="font-size:12px;color:#1D9E75;font-weight:600;">80pts 발생!</div>
-              <div style="font-size:10px;color:#86868B;margin-top:4px;">400 × 20%</div>
+        <div class="bc-grid">
+          <div class="bc-box active-bc">
+            <div class="bc-title" style="color:#1D9E75;">BC 1 롤업 ⭐</div>
+            <div class="bc-sides">
+              <div class="bc-side"><div class="bc-side-lbl" style="color:#3B82F6;">왼쪽</div><div class="bc-side-pts" style="color:#3B82F6;">400</div></div>
+              <div class="bc-sep"></div>
+              <div class="bc-side"><div class="bc-side-lbl" style="color:#F97316;">오른쪽</div><div class="bc-side-pts" style="color:#F97316;">600</div></div>
             </div>
-            <div style="background:#fff;border:1px solid #E5E5EA;border-radius:12px;padding:14px;text-align:center;">
-              <div style="font-size:10px;font-weight:600;color:#5B7CF0;margin-bottom:8px;">BC 2</div>
-              <div style="display:flex;justify-content:space-around;margin-bottom:8px;">
-                <div><div style="font-size:10px;color:#3B82F6;">질</div><div style="font-size:14px;font-weight:600;color:#3B82F6;">400</div></div>
-                <div style="font-size:16px;color:#E5E5EA;">|</div>
-                <div><div style="font-size:10px;color:#C0C0C0;">비어있음</div><div style="font-size:14px;font-weight:600;color:#C0C0C0;">0</div></div>
-              </div>
-              <div style="font-size:11px;color:#CC0000;">후원수당 미발생</div>
+            <div class="bc-result" style="color:#1D9E75;">80pts</div>
+            <div class="bc-result-sub">= 92,000원</div>
+          </div>
+          <div class="bc-box" style="border:1px dashed #CC0000;">
+            <div class="bc-title" style="color:#CC0000;">BC 2</div>
+            <div class="bc-sides">
+              <div class="bc-side"><div class="bc-side-lbl" style="color:#3B82F6;">질</div><div class="bc-side-pts" style="color:#3B82F6;">400</div></div>
+              <div class="bc-sep"></div>
+              <div class="bc-side"><div class="bc-side-lbl" style="color:#C0C0C0;">비어있음</div><div class="bc-side-pts" style="color:#C0C0C0;">0</div></div>
             </div>
-            <div style="background:#fff;border:1px solid #E5E5EA;border-radius:12px;padding:14px;text-align:center;">
-              <div style="font-size:10px;font-weight:600;color:#9B59B6;margin-bottom:8px;">BC 3</div>
-              <div style="display:flex;justify-content:space-around;margin-bottom:8px;">
-                <div><div style="font-size:10px;color:#C0C0C0;">비어있음</div><div style="font-size:14px;font-weight:600;color:#C0C0C0;">0</div></div>
-                <div style="font-size:16px;color:#E5E5EA;">|</div>
-                <div><div style="font-size:10px;color:#F97316;">밥</div><div style="font-size:14px;font-weight:600;color:#F97316;">600</div></div>
-              </div>
-              <div style="font-size:11px;color:#CC0000;">후원수당 미발생</div>
+            <div class="bc-result" style="color:#CC0000;">❌ 0원</div>
+          </div>
+          <div class="bc-box" style="border:1px dashed #CC0000;">
+            <div class="bc-title" style="color:#CC0000;">BC 3</div>
+            <div class="bc-sides">
+              <div class="bc-side"><div class="bc-side-lbl" style="color:#C0C0C0;">비어있음</div><div class="bc-side-pts" style="color:#C0C0C0;">0</div></div>
+              <div class="bc-sep"></div>
+              <div class="bc-side"><div class="bc-side-lbl" style="color:#F97316;">밥</div><div class="bc-side-pts" style="color:#F97316;">600</div></div>
             </div>
+            <div class="bc-result" style="color:#CC0000;">❌ 0원</div>
           </div>
         </div>
         <div class="infographic two-col">
           <div>
             <div class="calc-box">
-              <div class="calc-title">BC 1 후원수당 (롤업 효과)</div>
-              <div class="calc-formula">
-                <div class="calc-item"><div class="calc-num">400</div><div class="calc-lbl">왼쪽 합계(질)</div></div>
-                <div class="calc-op">×</div>
-                <div class="calc-item"><div class="calc-num">20%</div><div class="calc-lbl">비율</div></div>
-                <div class="calc-op">=</div>
-                <div class="calc-item"><div class="calc-result">80</div><div class="calc-result-lbl">후원수당pts</div></div>
+              <div class="calc-title">BC1 롤업 계산</div>
+              <div class="calc-steps">
+                <div class="calc-step">
+                  <div style="text-align:center"><div class="calc-num">400</div><div class="calc-lbl">왼쪽(질 롤업)</div></div>
+                  <div class="calc-op">×</div>
+                  <div style="text-align:center"><div class="calc-num">20%</div><div class="calc-lbl">비율</div></div>
+                  <div class="calc-op">=</div>
+                  <div style="text-align:center"><div class="calc-num" style="color:#FFD98A;">80pts</div><div class="calc-lbl">후원수당</div></div>
+                </div>
+                <div class="calc-sep"></div>
+                <div class="calc-krw-row"><div class="calc-krw-lbl">80pts × 1,150원</div><div class="calc-krw-val">= 92,000원</div></div>
               </div>
-              <div class="calc-note">BC2, BC3는 매칭 불가지만 BC1 롤업으로 수익 발생!<br>밥 여분 200pts → BC1 오른쪽에서 다음 주 이월</div>
+              <div class="calc-note">BC2·BC3는 매칭 불가지만 BC1 롤업으로 수익 발생!<br>이월 200pts (230,000원 잠재가치) → 다음 주</div>
             </div>
           </div>
           <div>
-            <div class="total-card">
-              <div class="total-label">이번 주 총 후원수당</div>
-              <div class="total-num">80</div>
-              <div class="total-unit">후원수당점수 (BC1 롤업)</div>
+            <div class="total-card green">
+              <div class="total-label">이번 주 수령액</div>
+              <div class="total-pts">80pts</div><div class="total-pts-unit">BC1 롤업</div>
+              <div class="total-divider"></div>
+              <div class="total-krw">92,000원</div><div class="total-krw-unit">이월 200pts → 다음 주 추가 기대</div>
             </div>
           </div>
         </div>
@@ -489,63 +494,58 @@
     <div class="s-card">
       <div class="s-header">
         <div class="s-num">SCENARIO 06</div>
-        <div class="s-title">브랜드 파트너 2명 추가 등록</div>
-        <div class="s-desc">질(400)+밥(600) BC2 · 수(500)+맷(200) BC3 → 3개 BC 모두 수익!</div>
+        <div class="s-title">브랜드 파트너 4명 — BC 3개 모두 수익!</div>
+        <div class="s-desc">질(400)+밥(600) BC2 · 수(500)+맷(200) BC3 → 총 260pts = 299,000원</div>
       </div>
       <div class="s-body">
-        <div style="background:#F5F5F7;border-radius:14px;padding:20px;margin-bottom:20px;">
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;">
-            <div style="background:#fff;border:1.5px solid #1D9E75;border-radius:12px;padding:14px;text-align:center;">
-              <div style="font-size:10px;font-weight:600;color:#1D9E75;margin-bottom:8px;">BC 1 롤업</div>
-              <div style="display:flex;justify-content:space-around;margin-bottom:8px;">
-                <div><div style="font-size:9px;color:#3B82F6;">왼쪽(BC2합계)</div><div style="font-size:14px;font-weight:600;color:#3B82F6;">1,000</div></div>
-                <div style="font-size:16px;color:#E5E5EA;">|</div>
-                <div><div style="font-size:9px;color:#F97316;">오른쪽(BC3합계)</div><div style="font-size:14px;font-weight:600;color:#F97316;">700</div></div>
-              </div>
-              <div style="font-size:12px;color:#1D9E75;font-weight:600;">140pts 발생</div>
-              <div style="font-size:10px;color:#86868B;">700 × 20%</div>
+        <div class="bc-grid">
+          <div class="bc-box active-bc">
+            <div class="bc-title" style="color:#1D9E75;">BC 1 롤업 ✅</div>
+            <div class="bc-sides">
+              <div class="bc-side"><div class="bc-side-lbl" style="color:#3B82F6;">왼쪽</div><div class="bc-side-pts" style="color:#3B82F6;">1,000</div></div>
+              <div class="bc-sep"></div>
+              <div class="bc-side"><div class="bc-side-lbl" style="color:#F97316;">오른쪽</div><div class="bc-side-pts" style="color:#F97316;">700</div></div>
             </div>
-            <div style="background:#fff;border:1px solid #E5E5EA;border-radius:12px;padding:14px;text-align:center;">
-              <div style="font-size:10px;font-weight:600;color:#5B7CF0;margin-bottom:8px;">BC 2</div>
-              <div style="display:flex;justify-content:space-around;margin-bottom:8px;">
-                <div><div style="font-size:10px;color:#3B82F6;">질</div><div style="font-size:14px;font-weight:600;color:#3B82F6;">400</div></div>
-                <div style="font-size:16px;color:#E5E5EA;">|</div>
-                <div><div style="font-size:10px;color:#F97316;">밥</div><div style="font-size:14px;font-weight:600;color:#F97316;">600</div></div>
-              </div>
-              <div style="font-size:12px;color:#1D9E75;font-weight:600;">80pts 발생</div>
-              <div style="font-size:10px;color:#86868B;">400 × 20%</div>
+            <div class="bc-result" style="color:#1D9E75;">140pts</div>
+            <div class="bc-result-sub">= 161,000원</div>
+          </div>
+          <div class="bc-box active-bc">
+            <div class="bc-title" style="color:#1D9E75;">BC 2 ✅</div>
+            <div class="bc-sides">
+              <div class="bc-side"><div class="bc-side-lbl" style="color:#3B82F6;">질</div><div class="bc-side-pts" style="color:#3B82F6;">400</div></div>
+              <div class="bc-sep"></div>
+              <div class="bc-side"><div class="bc-side-lbl" style="color:#F97316;">밥</div><div class="bc-side-pts" style="color:#F97316;">600</div></div>
             </div>
-            <div style="background:#fff;border:1px solid #E5E5EA;border-radius:12px;padding:14px;text-align:center;">
-              <div style="font-size:10px;font-weight:600;color:#9B59B6;margin-bottom:8px;">BC 3</div>
-              <div style="display:flex;justify-content:space-around;margin-bottom:8px;">
-                <div><div style="font-size:10px;color:#3B82F6;">수</div><div style="font-size:14px;font-weight:600;color:#3B82F6;">500</div></div>
-                <div style="font-size:16px;color:#E5E5EA;">|</div>
-                <div><div style="font-size:10px;color:#F97316;">맷</div><div style="font-size:14px;font-weight:600;color:#F97316;">200</div></div>
-              </div>
-              <div style="font-size:12px;color:#1D9E75;font-weight:600;">40pts 발생</div>
-              <div style="font-size:10px;color:#86868B;">200 × 20%</div>
+            <div class="bc-result" style="color:#1D9E75;">80pts</div>
+            <div class="bc-result-sub">= 92,000원</div>
+          </div>
+          <div class="bc-box active-bc">
+            <div class="bc-title" style="color:#1D9E75;">BC 3 ✅</div>
+            <div class="bc-sides">
+              <div class="bc-side"><div class="bc-side-lbl" style="color:#3B82F6;">수</div><div class="bc-side-pts" style="color:#3B82F6;">500</div></div>
+              <div class="bc-sep"></div>
+              <div class="bc-side"><div class="bc-side-lbl" style="color:#F97316;">맷</div><div class="bc-side-pts" style="color:#F97316;">200</div></div>
             </div>
+            <div class="bc-result" style="color:#1D9E75;">40pts</div>
+            <div class="bc-result-sub">= 46,000원</div>
           </div>
         </div>
         <div class="infographic two-col">
           <div>
             <div class="rollup-section">
-              <div class="rollup-title">BC별 후원수당 계산</div>
-              <div class="rollup-row"><div class="rollup-key">BC2: 400 × 20%</div><div class="rollup-val">80pts</div></div>
-              <div class="rollup-row"><div class="rollup-key">BC3: 200 × 20%</div><div class="rollup-val">40pts</div></div>
-              <div class="rollup-row"><div class="rollup-key">BC1: 700 × 20%</div><div class="rollup-val">140pts</div></div>
-              <div class="rollup-row" style="border-top:1.5px solid #1D9E75;margin-top:4px;padding-top:8px;"><div class="rollup-key" style="font-weight:600;color:#1D1D1F;">총 후원수당</div><div class="rollup-val" style="color:#1D9E75;font-size:16px;">260pts</div></div>
+              <div class="rollup-title">BC별 수익 상세</div>
+              <div class="rollup-row"><div class="rollup-key">BC2: 400×20% = 80pts</div><div class="rollup-val">92,000원</div></div>
+              <div class="rollup-row"><div class="rollup-key">BC3: 200×20% = 40pts</div><div class="rollup-val">46,000원</div></div>
+              <div class="rollup-row"><div class="rollup-key">BC1: 700×20% = 140pts</div><div class="rollup-val">161,000원</div></div>
+              <div class="rollup-row" style="border-top:2px solid #1D9E75;margin-top:4px;padding-top:8px;"><div class="rollup-key" style="font-weight:700;color:#1D1D1F;">총 합계</div><div style="text-align:right"><div class="rollup-val" style="color:#1D9E75;font-size:15px;">260pts</div><div class="rollup-krw">299,000원</div></div></div>
             </div>
           </div>
           <div>
-            <div class="total-card">
-              <div class="total-label">3개 BC 총 후원수당</div>
-              <div class="total-num">260</div>
-              <div class="total-unit">후원수당점수</div>
-            </div>
-            <div class="tip-banner" style="margin-top:12px;">
-              <div>🏪</div>
-              <div class="tip-text"><strong>3개의 스토어</strong>에서 동시에 수익이 발생! 같은 팀원으로 더 많은 수입을 올릴 수 있어요.</div>
+            <div class="total-card green">
+              <div class="total-label">3개 BC 총 수령액</div>
+              <div class="total-pts">260pts</div><div class="total-pts-unit">후원수당점수</div>
+              <div class="total-divider"></div>
+              <div class="total-krw">299,000원</div><div class="total-krw-unit">3개 스토어 동시 수익!</div>
             </div>
           </div>
         </div>
@@ -558,13 +558,12 @@
     <div class="s-card">
       <div class="s-header">
         <div class="s-num">SCENARIO 07 ⭐ 핵심</div>
-        <div class="s-title">BC 3개가 1개보다 더 나은 이유</div>
-        <div class="s-desc">같은 팀원 · 같은 노력 → BC 배치 전략만 바꿔도 수입이 달라집니다!</div>
+        <div class="s-title">BC 3개 vs 1개 — 같은 팀원, 다른 수입</div>
+        <div class="s-desc">배치 전략만 바꿔도 주당 138,000원 차이가 납니다!</div>
       </div>
       <div class="s-body">
-        <!-- 비교 테이블 -->
         <div style="margin-bottom:24px;">
-          <div style="font-size:11px;font-weight:600;color:#86868B;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">📊 BC 1개 vs BC 3개 비교</div>
+          <div style="font-size:11px;font-weight:600;color:#86868B;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;">📊 BC 1개 vs 3개 비교 (같은 팀원)</div>
           <table class="compare-table">
             <tr>
               <th>구분</th>
@@ -572,85 +571,104 @@
               <th>BC 3개 운영 ⭐</th>
             </tr>
             <tr>
-              <td>질 그룹</td>
-              <td>왼쪽 1,000pts</td>
-              <td class="highlight">BC2 왼쪽 200pts</td>
+              <td>BC2 후원수당</td>
+              <td>—</td>
+              <td class="hi">40pts / 46,000원</td>
             </tr>
             <tr>
-              <td>밥 그룹</td>
-              <td>오른쪽 500pts</td>
-              <td class="highlight">BC2 오른쪽 500pts</td>
+              <td>BC3 후원수당</td>
+              <td>—</td>
+              <td class="hi">60pts / 69,000원</td>
             </tr>
             <tr>
-              <td>수 그룹</td>
-              <td>(왼쪽 포함)</td>
-              <td class="highlight">BC3 왼쪽 300pts</td>
+              <td>BC1 후원수당</td>
+              <td>100pts / 115,000원</td>
+              <td class="hi">120pts / 138,000원</td>
             </tr>
             <tr>
-              <td>맷 그룹</td>
-              <td>(왼쪽 포함)</td>
-              <td class="highlight">BC3 오른쪽 300pts</td>
+              <td style="font-weight:700;">주간 총 수령액</td>
+              <td style="color:#CC0000;font-weight:600;">100pts<br><span class="hi-krw">115,000원</span></td>
+              <td style="color:#1D9E75;font-weight:700;font-size:14px;">220pts<br><span style="color:#C47E00;font-weight:700;font-size:13px;">253,000원</span></td>
             </tr>
             <tr>
-              <td>BC 후원수당</td>
-              <td>100pts (500×20%)</td>
-              <td class="highlight">40+60+120 = 220pts</td>
+              <td style="font-weight:700;">차이</td>
+              <td>—</td>
+              <td style="color:#1D9E75;font-weight:700;">+120pts<br><span style="color:#C47E00;font-weight:700;">+138,000원/주</span></td>
             </tr>
             <tr>
-              <td style="font-weight:700;color:#1D1D1F;">총 수입 차이</td>
-              <td style="color:#CC0000;font-weight:600;">100pts</td>
-              <td style="color:#1D9E75;font-weight:700;font-size:15px;">220pts (+120pts!)</td>
+              <td style="font-weight:700;">월 환산 차이</td>
+              <td>460,000원/월</td>
+              <td style="color:#1D9E75;font-weight:700;">1,012,000원/월<br><span style="color:#C47E00;font-size:11px;">+552,000원/월 추가!</span></td>
             </tr>
           </table>
         </div>
 
         <div class="infographic two-col">
           <div>
-            <div style="background:#F5F5F7;border-radius:14px;padding:18px;">
-              <div style="font-size:11px;font-weight:600;color:#86868B;letter-spacing:1px;margin-bottom:14px;text-transform:uppercase;">BC 3개 배치 전략</div>
-              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
-                <div style="background:#fff;border:1px solid #E5E5EA;border-radius:10px;padding:10px;text-align:center;">
-                  <div style="font-size:9px;color:#1D9E75;font-weight:600;margin-bottom:6px;">BC 2</div>
-                  <div style="font-size:11px;color:#3B82F6;">질 200</div>
-                  <div style="font-size:10px;color:#E5E5EA;">|</div>
-                  <div style="font-size:11px;color:#F97316;">밥 500</div>
-                  <div style="font-size:11px;color:#1D9E75;font-weight:600;margin-top:4px;">40pts</div>
+            <div class="bc-grid" style="grid-template-columns:1fr 1fr 1fr;gap:10px;">
+              <div class="bc-box active-bc">
+                <div class="bc-title" style="color:#1D9E75;font-size:9px;">BC 2</div>
+                <div style="font-size:11px;color:#3B82F6;">질 200</div>
+                <div style="font-size:10px;color:#E5E5EA;">|</div>
+                <div style="font-size:11px;color:#F97316;">밥 500</div>
+                <div class="bc-result" style="color:#1D9E75;font-size:11px;">40pts</div>
+                <div class="bc-result-sub">46,000원</div>
+              </div>
+              <div class="bc-box active-bc">
+                <div class="bc-title" style="color:#9B59B6;font-size:9px;">BC 3</div>
+                <div style="font-size:11px;color:#3B82F6;">수 300</div>
+                <div style="font-size:10px;color:#E5E5EA;">|</div>
+                <div style="font-size:11px;color:#F97316;">맷 300</div>
+                <div class="bc-result" style="color:#1D9E75;font-size:11px;">60pts</div>
+                <div class="bc-result-sub">69,000원</div>
+              </div>
+              <div class="bc-box active-bc">
+                <div class="bc-title" style="color:#1D9E75;font-size:9px;">BC 1 롤업</div>
+                <div style="font-size:11px;color:#3B82F6;">700</div>
+                <div style="font-size:10px;color:#E5E5EA;">|</div>
+                <div style="font-size:11px;color:#F97316;">600</div>
+                <div class="bc-result" style="color:#1D9E75;font-size:11px;">120pts</div>
+                <div class="bc-result-sub">138,000원</div>
+              </div>
+            </div>
+            <div class="calc-box" style="margin-top:12px;">
+              <div class="calc-title">BC 3개 총 계산</div>
+              <div class="calc-steps">
+                <div class="calc-step">
+                  <div style="text-align:center"><div class="calc-num">40</div><div class="calc-lbl">BC2</div></div>
+                  <div class="calc-op">+</div>
+                  <div style="text-align:center"><div class="calc-num">60</div><div class="calc-lbl">BC3</div></div>
+                  <div class="calc-op">+</div>
+                  <div style="text-align:center"><div class="calc-num">120</div><div class="calc-lbl">BC1</div></div>
+                  <div class="calc-op">=</div>
+                  <div style="text-align:center"><div class="calc-num" style="color:#FFD98A;">220pts</div></div>
                 </div>
-                <div style="background:#fff;border:1px solid #E5E5EA;border-radius:10px;padding:10px;text-align:center;">
-                  <div style="font-size:9px;color:#9B59B6;font-weight:600;margin-bottom:6px;">BC 3</div>
-                  <div style="font-size:11px;color:#3B82F6;">수 300</div>
-                  <div style="font-size:10px;color:#E5E5EA;">|</div>
-                  <div style="font-size:11px;color:#F97316;">맷 300</div>
-                  <div style="font-size:11px;color:#1D9E75;font-weight:600;margin-top:4px;">60pts</div>
-                </div>
-                <div style="background:#fff;border:1.5px solid #1D9E75;border-radius:10px;padding:10px;text-align:center;">
-                  <div style="font-size:9px;color:#1D9E75;font-weight:600;margin-bottom:6px;">BC 1 롤업</div>
-                  <div style="font-size:11px;color:#3B82F6;">700</div>
-                  <div style="font-size:10px;color:#E5E5EA;">|</div>
-                  <div style="font-size:11px;color:#F97316;">600</div>
-                  <div style="font-size:11px;color:#1D9E75;font-weight:600;margin-top:4px;">120pts</div>
-                </div>
+                <div class="calc-sep"></div>
+                <div class="calc-krw-row"><div class="calc-krw-lbl">220pts × 1,150원</div><div class="calc-krw-val">= 253,000원/주</div></div>
               </div>
             </div>
           </div>
-          <div>
-            <div class="calc-box">
-              <div class="calc-title">BC 3개 총 후원수당</div>
-              <div class="calc-formula">
-                <div class="calc-item"><div class="calc-num">40</div><div class="calc-lbl">BC2</div></div>
-                <div class="calc-op">+</div>
-                <div class="calc-item"><div class="calc-num">60</div><div class="calc-lbl">BC3</div></div>
-                <div class="calc-op">+</div>
-                <div class="calc-item"><div class="calc-num">120</div><div class="calc-lbl">BC1</div></div>
-                <div class="calc-op">=</div>
-                <div class="calc-item"><div class="calc-result">220</div><div class="calc-result-lbl">총 후원수당pts</div></div>
-              </div>
-              <div class="calc-note">BC 1개(100pts) 대비 <span style="color:#A8F0D0;font-weight:600;">+120pts 추가 수입!</span><br>같은 팀원, 더 현명한 배치 전략의 힘</div>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div class="total-card green">
+              <div class="total-label">BC 3개 주간 수령액</div>
+              <div class="total-pts">220pts</div><div class="total-pts-unit">후원수당점수</div>
+              <div class="total-divider"></div>
+              <div class="total-krw">253,000원</div><div class="total-krw-unit">월 환산 약 1,012,000원</div>
             </div>
-            <div class="total-card" style="margin-top:14px;">
-              <div class="total-label">BC 3개 총 후원수당</div>
-              <div class="total-num">220</div>
-              <div class="total-unit">vs BC 1개 = 100pts</div>
+            <div style="background:#fff;border:1px solid #E5E5EA;border-radius:14px;padding:18px;">
+              <div style="font-size:11px;font-weight:600;color:#86868B;letter-spacing:1px;margin-bottom:12px;text-transform:uppercase;">BC 전략 효과 (월 환산)</div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:0.5px solid #F2F2F7;">
+                <div style="font-size:12px;color:#3A3A3C;">BC 1개 운영</div>
+                <div style="font-size:14px;font-weight:600;color:#CC0000;">460,000원/월</div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:0.5px solid #F2F2F7;">
+                <div style="font-size:12px;color:#3A3A3C;">BC 3개 운영</div>
+                <div style="font-size:14px;font-weight:600;color:#1D9E75;">1,012,000원/월</div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;">
+                <div style="font-size:12px;font-weight:600;color:#1D1D1F;">추가 수익</div>
+                <div style="font-size:16px;font-weight:700;color:#C47E00;">+552,000원/월</div>
+              </div>
             </div>
           </div>
         </div>

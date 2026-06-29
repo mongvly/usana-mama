@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>USANA MAMA — 마일스톤 보너스 달성</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Noto Sans KR','Inter',-apple-system,sans-serif; background:#F5F5F7; color:#1D1D1F; -webkit-font-smoothing:antialiased; }
+
+  .top-nav { background:#fff; border-bottom:1px solid #E5E5EA; padding:14px 32px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; }
+  .nav-brand { font-size:11px; font-weight:500; color:#1D9E75; letter-spacing:2px; }
+  .nav-title { font-size:15px; font-weight:600; color:#1D1D1F; }
+  .nav-back { font-size:12px; color:#86868B; text-decoration:none; }
+  .nav-back:hover { color:#1D9E75; }
+
+  .container { max-width:860px; margin:0 auto; padding:52px 24px 64px; }
+
+  /* 헤더 */
+  .page-header { margin-bottom:48px; }
+  .header-label { font-size:11px; font-weight:500; color:#1D9E75; letter-spacing:2px; text-transform:uppercase; margin-bottom:12px; }
+  .header-title { font-size:36px; font-weight:600; color:#1D1D1F; letter-spacing:-1px; line-height:1.2; margin-bottom:20px; }
+  .header-body { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .header-desc { font-size:14px; color:#3A3A3C; line-height:1.85; font-weight:300; }
+  .header-callout { background:#1D1D1F; border-radius:14px; padding:20px 24px; }
+  .callout-icon { font-size:20px; margin-bottom:8px; }
+  .callout-text { font-size:13px; color:#A8F0D0; line-height:1.7; font-weight:300; }
+  .callout-text strong { color:#fff; font-weight:500; }
+
+  /* 여정 섹션 */
+  .journey { margin-bottom:48px; }
+  .section-label { font-size:11px; font-weight:600; color:#1D9E75; letter-spacing:2px; text-transform:uppercase; margin-bottom:24px; }
+
+  /* SVG 여정 라인 */
+  .journey-visual { position:relative; padding:20px 0 0; margin-bottom:32px; }
+  .journey-svg { width:100%; height:80px; }
+
+  /* 마일스톤 카드 3개 */
+  .milestones { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; position:relative; margin-bottom:0; }
+
+  .ms-card { border-radius:18px; padding:24px; position:relative; overflow:hidden; }
+  .ms-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
+
+  .ms1 { background:#EFF9F5; border:1px solid #C8EEDE; }
+  .ms1::before { background:#1D9E75; }
+  .ms2 { background:#F0F4FF; border:1px solid #C8D5F5; }
+  .ms2::before { background:#5B7CF0; }
+  .ms3 { background:#FFF5F0; border:1px solid #FFD5C0; }
+  .ms3::before { background:#FF6B35; }
+
+  .ms-num-wrap { display:flex; align-items:center; gap:12px; margin-bottom:16px; }
+  .ms-num { font-size:40px; font-weight:700; line-height:1; }
+  .ms1 .ms-num { color:#1D9E75; }
+  .ms2 .ms-num { color:#5B7CF0; }
+  .ms3 .ms-num { color:#FF6B35; }
+
+  .ms-badge { font-size:10px; font-weight:600; letter-spacing:1px; padding:4px 10px; border-radius:20px; }
+  .ms1 .ms-badge { background:#1D9E75; color:#fff; }
+  .ms2 .ms-badge { background:#5B7CF0; color:#fff; }
+  .ms3 .ms-badge { background:#FF6B35; color:#fff; }
+
+  .ms-title { font-size:15px; font-weight:600; color:#1D1D1F; margin-bottom:16px; }
+
+  .ms-row { margin-bottom:12px; }
+  .ms-row-label { font-size:10px; font-weight:600; color:#86868B; letter-spacing:1px; text-transform:uppercase; margin-bottom:5px; }
+  .ms-row-val { font-size:13px; color:#1D1D1F; line-height:1.6; font-weight:300; }
+
+  .ms-reward { display:flex; align-items:center; gap:8px; margin-top:16px; padding:10px 14px; border-radius:10px; }
+  .ms1 .ms-reward { background:#D4F0E5; }
+  .ms2 .ms-reward { background:#D8E0FF; }
+  .ms3 .ms-reward { background:#FFE0D0; }
+  .ms-reward-icon { font-size:16px; flex-shrink:0; }
+  .ms-reward-text { font-size:12px; font-weight:500; }
+  .ms1 .ms-reward-text { color:#0F6E50; }
+  .ms2 .ms-reward-text { color:#2A44B0; }
+  .ms3 .ms-reward-text { color:#C04010; }
+
+  /* 타임라인 바 */
+  .timeline-bar { margin-top:28px; position:relative; }
+  .tl-track { height:2px; background:#E5E5EA; border-radius:2px; position:relative; margin:0 0 12px; }
+  .tl-fill-1 { position:absolute; left:0; top:0; height:2px; width:33.3%; background:#1D9E75; border-radius:2px; }
+  .tl-fill-2 { position:absolute; left:33.3%; top:0; height:2px; width:33.3%; background:#5B7CF0; border-radius:2px; }
+  .tl-fill-3 { position:absolute; left:66.6%; top:0; height:2px; width:33.4%; background:#FF6B35; border-radius:2px; }
+  .tl-dots { display:flex; justify-content:space-between; position:relative; }
+  .tl-dot-wrap { display:flex; flex-direction:column; align-items:center; gap:6px; }
+  .tl-dot { width:8px; height:8px; border-radius:50%; }
+  .tl-dot-1 { background:#1D9E75; }
+  .tl-dot-2 { background:#5B7CF0; }
+  .tl-dot-3 { background:#FF6B35; }
+  .tl-dot-end { background:#FF6B35; }
+  .tl-label { font-size:11px; color:#86868B; font-weight:400; }
+
+  /* 핵심 포인트 */
+  .tips-section { margin-top:40px; }
+  .tips-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .tip-card { background:#fff; border:1px solid #E5E5EA; border-radius:14px; padding:20px; }
+  .tip-icon { font-size:22px; margin-bottom:10px; }
+  .tip-title { font-size:12px; font-weight:600; color:#1D1D1F; margin-bottom:6px; }
+  .tip-desc { font-size:12px; color:#86868B; line-height:1.6; font-weight:300; }
+
+  /* 체크리스트 */
+  .checklist-section { margin-top:28px; }
+  .checklist-card { background:#fff; border:1px solid #E5E5EA; border-radius:16px; padding:28px; }
+  .checklist-title { font-size:14px; font-weight:600; color:#1D1D1F; margin-bottom:18px; display:flex; align-items:center; gap:8px; }
+  .cl-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
+  .cl-group-title { font-size:11px; font-weight:600; color:#1D9E75; letter-spacing:1px; text-transform:uppercase; margin-bottom:10px; padding-bottom:8px; border-bottom:1px solid #E5E5EA; }
+  .cl-group-title.b2 { color:#5B7CF0; }
+  .cl-group-title.b3 { color:#FF6B35; }
+  .cl-item { display:flex; gap:10px; align-items:flex-start; margin-bottom:10px; }
+  .cl-check { width:16px; height:16px; border:1.5px solid #E5E5EA; border-radius:4px; flex-shrink:0; margin-top:1px; cursor:pointer; appearance:none; -webkit-appearance:none; background:#fff; transition:all .15s; }
+  .cl-check:checked { background:#1D9E75; border-color:#1D9E75; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='white' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-size:10px; background-position:center; background-repeat:no-repeat; }
+  .cl-check.b2:checked { background:#5B7CF0; border-color:#5B7CF0; }
+  .cl-check.b3:checked { background:#FF6B35; border-color:#FF6B35; }
+  .cl-text { font-size:12px; color:#3A3A3C; line-height:1.55; font-weight:300; }
+
+  .result-bar { margin-top:28px; background:#1D1D1F; border-radius:14px; padding:22px 28px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+  .rb-left { display:flex; align-items:center; gap:24px; }
+  .rb-item { text-align:center; }
+  .rb-num { font-size:22px; font-weight:600; color:#A8F0D0; line-height:1; }
+  .rb-lbl { font-size:10px; color:#636366; margin-top:4px; letter-spacing:0.3px; }
+  .rb-sep { width:1px; height:36px; background:#3A3A3C; }
+  .rb-right { font-size:12px; color:#86868B; line-height:1.7; font-weight:300; text-align:right; }
+  .rb-right strong { color:#A8F0D0; font-weight:500; }
+
+  .footer { text-align:center; padding:36px 0 20px; font-size:11px; color:#C7C7CC; }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <a class="nav-back" href="index.html">← 메인으로</a>
+  <div class="nav-title">마일스톤 보너스 달성</div>
+  <div class="nav-brand">USANA MAMA</div>
+</div>
+
+<div class="container">
+
+  <!-- 헤더 -->
+  <div class="page-header">
+    <div class="header-label">USANA MAMA · Pacesetter</div>
+    <div class="header-title">마일스톤 보너스 달성</div>
+    <div class="header-body">
+      <div class="header-desc">
+        마일스톤 보너스는 <strong>페이스세터가 되는 디딤돌</strong>로 생각하실 수 있습니다.<br><br>
+        각 레벨은 명확한 목표와 더 빠른 성과 달성을 통해 더욱더 노력하고자 하는 동기부여를 제공합니다.
+      </div>
+      <div class="header-callout">
+        <div class="callout-icon">🎯</div>
+        <div class="callout-text">
+          마일스톤 자격 취득을 위해 노력하시는 동안 항상 기억하세요.<br><br>
+          <strong>궁극적 목표는 후원과 성장을 통한<br>페이스세터 자격 취득</strong>입니다.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 마일스톤 카드 -->
+  <div class="journey">
+    <div class="section-label">마일스톤 여정 — 3단계</div>
+
+    <div class="milestones">
+
+      <!-- M1 -->
+      <div class="ms-card ms1">
+        <div class="ms-num-wrap">
+          <div class="ms-num">1</div>
+          <span class="ms-badge">MILESTONE 1</span>
+        </div>
+        <div class="ms-title">마일스톤 보너스 1</div>
+        <div class="ms-row">
+          <div class="ms-row-label">나의 목표</div>
+          <div class="ms-row-val">개인적으로 후원한 프리퍼드 커스터머나 브랜드 파트너로부터<br><strong>실적점수 250포인트 창출</strong></div>
+        </div>
+        <div class="ms-reward">
+          <div class="ms-reward-icon">🎁</div>
+          <div class="ms-reward-text">보상 — 후원수당점수 50포인트</div>
+        </div>
+      </div>
+
+      <!-- M2 -->
+      <div class="ms-card ms2">
+        <div class="ms-num-wrap">
+          <div class="ms-num">2</div>
+          <span class="ms-badge">MILESTONE 2</span>
+        </div>
+        <div class="ms-title">마일스톤 보너스 2</div>
+        <div class="ms-row">
+          <div class="ms-row-label">나의 목표</div>
+          <div class="ms-row-val">4명 이상의 프리퍼드 커스터머나 브랜드 파트너로부터<br><strong>실적점수 500포인트 창출</strong></div>
+        </div>
+        <div class="ms-reward">
+          <div class="ms-reward-icon">🎁</div>
+          <div class="ms-reward-text">보상 — 후원수당점수 100포인트</div>
+        </div>
+      </div>
+
+      <!-- M3 -->
+      <div class="ms-card ms3">
+        <div class="ms-num-wrap">
+          <div class="ms-num">3</div>
+          <span class="ms-badge">MILESTONE 3</span>
+        </div>
+        <div class="ms-title">마일스톤 보너스 3</div>
+        <div class="ms-row">
+          <div class="ms-row-label">나의 궁극적 목표</div>
+          <div class="ms-row-val"><strong>페이스세터</strong> 자격 취득</div>
+        </div>
+        <div class="ms-reward">
+          <div class="ms-reward-icon">🏆</div>
+          <div class="ms-reward-text">보상 — 후원수당점수 150포인트</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 타임라인 바 -->
+    <div class="timeline-bar">
+      <div class="tl-track">
+        <div class="tl-fill-1"></div>
+        <div class="tl-fill-2"></div>
+        <div class="tl-fill-3"></div>
+      </div>
+      <div class="tl-dots">
+        <div class="tl-dot-wrap"><div class="tl-dot tl-dot-1"></div><div class="tl-label">시작</div></div>
+        <div class="tl-dot-wrap"><div class="tl-dot tl-dot-1"></div><div class="tl-label">첫 달까지</div></div>
+        <div class="tl-dot-wrap"><div class="tl-dot tl-dot-2"></div><div class="tl-label">두 번째 달까지</div></div>
+        <div class="tl-dot-wrap"><div class="tl-dot tl-dot-end"></div><div class="tl-label">13주까지</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 핵심 팁 -->
+  <div class="tips-section">
+    <div class="section-label">성공 전략 핵심 포인트</div>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <div class="tip-icon">🌱</div>
+        <div class="tip-title">빠른 시작이 중요해요</div>
+        <div class="tip-desc">첫 달 안에 마일스톤 1 달성을 목표로 하세요. 초반 모멘텀이 전체 13주를 결정합니다.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">👥</div>
+        <div class="tip-title">4명의 진심 고객 만들기</div>
+        <div class="tip-desc">마일스톤 2의 핵심은 숫자가 아닌 신뢰입니다. 제품을 정말 좋아하는 고객 4명이 기반입니다.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🎯</div>
+        <div class="tip-title">페이스세터가 최종 목표</div>
+        <div class="tip-desc">마일스톤은 디딤돌입니다. 보너스보다 후원과 성장을 통한 페이스세터 달성에 집중하세요.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 체크리스트 -->
+  <div class="checklist-section">
+    <div class="checklist-card">
+      <div class="checklist-title">☑️ 마일스톤별 실행 체크리스트</div>
+      <div class="cl-grid">
+
+        <div>
+          <div class="cl-group-title">마일스톤 1 — 첫 달</div>
+          <div class="cl-item"><input type="checkbox" class="cl-check"><div class="cl-text">첫 프리퍼드 커스터머 등록 완료</div></div>
+          <div class="cl-item"><input type="checkbox" class="cl-check"><div class="cl-text">제품 사용법 & 온보딩 안내</div></div>
+          <div class="cl-item"><input type="checkbox" class="cl-check"><div class="cl-text">실적점수 250포인트 달성</div></div>
+          <div class="cl-item"><input type="checkbox" class="cl-check"><div class="cl-text">보너스 50포인트 확인</div></div>
+        </div>
+
+        <div>
+          <div class="cl-group-title b2">마일스톤 2 — 두 번째 달</div>
+          <div class="cl-item"><input type="checkbox" class="cl-check b2"><div class="cl-text">4명 이상 프리퍼드 커스터머 확보</div></div>
+          <div class="cl-item"><input type="checkbox" class="cl-check b2"><div class="cl-text">고객 그룹 채팅방 운영 시작</div></div>
+          <div class="cl-item"><input type="checkbox" class="cl-check b2"><div class="cl-text">실적점수 500포인트 달성</div></div>
+          <div class="cl-item"><input type="checkbox" class="cl-check b2"><div class="cl-text">보너스 100포인트 확인</div></div>
+        </div>
+
+        <div>
+          <div class="cl-group-title b3">마일스톤 3 — 13주까지</div>
+          <div class="cl-item"><input type="checkbox" class="cl-check b3"><div class="cl-text">브랜드 파트너 팀 구성</div></div>
+          <div class="cl-item"><input type="checkbox" class="cl-check b3"><div class="cl-text">팀 온보딩 & 교육 지원</div></div>
+          <div class="cl-item"><input type="checkbox" class="cl-check b3"><div class="cl-text">페이스세터 자격 조건 달성</div></div>
+          <div class="cl-item"><input type="checkbox" class="cl-check b3"><div class="cl-text">보너스 150포인트 확인</div></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 결과 바 -->
+  <div class="result-bar">
+    <div class="rb-left">
+      <div class="rb-item">
+        <div class="rb-num">250</div>
+        <div class="rb-lbl">M1 실적점수</div>
+      </div>
+      <div class="rb-sep"></div>
+      <div class="rb-item">
+        <div class="rb-num">500</div>
+        <div class="rb-lbl">M2 실적점수</div>
+      </div>
+      <div class="rb-sep"></div>
+      <div class="rb-item">
+        <div class="rb-num">300</div>
+        <div class="rb-lbl">총 보너스 포인트</div>
+      </div>
+      <div class="rb-sep"></div>
+      <div class="rb-item">
+        <div class="rb-num">13주</div>
+        <div class="rb-lbl">페이스세터 달성 목표</div>
+      </div>
+    </div>
+    <div class="rb-right">
+      <strong>목표 + 약속 = 결과</strong><br>
+      지금 이 순간부터<br>페이스세터 여정이 시작됩니다.
+    </div>
+  </div>
+
+  <div class="footer">USANA MAMA · Wellness Consultant · True Health · True Life</div>
+</div>
+
+<script>
+// 체크박스 상태 저장
+document.querySelectorAll('.cl-check').forEach((cb,i) => {
+  cb.checked = localStorage.getItem('ms_check_'+i) === '1';
+  cb.addEventListener('change', () => {
+    localStorage.setItem('ms_check_'+i, cb.checked ? '1' : '0');
+  });
+});
+</script>
+</body>
+</html>

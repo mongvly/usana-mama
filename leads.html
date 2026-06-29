@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>USANA MAMA — 잠재고객 관리시트</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Noto Sans KR','Inter',-apple-system,sans-serif; background:#F5F5F7; color:#1D1D1F; -webkit-font-smoothing:antialiased; }
+
+  .top-nav { background:#fff; border-bottom:1px solid #E5E5EA; padding:14px 32px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; }
+  .nav-brand { font-size:11px; font-weight:500; color:#1D9E75; letter-spacing:2px; }
+  .nav-title { font-size:15px; font-weight:600; color:#1D1D1F; }
+  .nav-back { font-size:12px; color:#86868B; text-decoration:none; display:flex; align-items:center; gap:4px; }
+  .nav-back:hover { color:#1D9E75; }
+
+  .container { max-width:1200px; margin:0 auto; padding:32px 24px; }
+
+  /* 요약 카드 */
+  .summary-row { display:grid; grid-template-columns:repeat(6,1fr); gap:10px; margin-bottom:28px; }
+  .sum-card { background:#fff; border:1px solid #E5E5EA; border-radius:12px; padding:14px 16px; text-align:center; }
+  .sum-num { font-size:24px; font-weight:600; color:#1D9E75; line-height:1; margin-bottom:4px; }
+  .sum-num.total { color:#1D1D1F; }
+  .sum-lbl { font-size:10px; color:#86868B; letter-spacing:0.3px; }
+
+  /* 툴바 */
+  .toolbar { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; gap:12px; }
+  .toolbar-left { display:flex; gap:10px; align-items:center; }
+  .search-box { border:1px solid #E5E5EA; border-radius:10px; padding:8px 14px; font-size:13px; font-family:'Noto Sans KR',sans-serif; width:220px; outline:none; background:#fff; }
+  .search-box:focus { border-color:#1D9E75; }
+  .filter-select { border:1px solid #E5E5EA; border-radius:10px; padding:8px 12px; font-size:12px; font-family:'Noto Sans KR',sans-serif; outline:none; background:#fff; cursor:pointer; color:#3A3A3C; }
+  .btn { padding:8px 16px; border-radius:10px; font-size:12px; font-weight:500; cursor:pointer; border:none; font-family:'Noto Sans KR',sans-serif; transition:background .15s; }
+  .btn-green { background:#1D9E75; color:#fff; }
+  .btn-green:hover { background:#0F6E50; }
+  .btn-outline { background:#fff; color:#1D1D1F; border:1px solid #E5E5EA; }
+  .btn-outline:hover { background:#F5F5F7; }
+
+  /* 테이블 */
+  .table-wrap { background:#fff; border-radius:16px; border:1px solid #E5E5EA; overflow:hidden; }
+  table { width:100%; border-collapse:collapse; font-size:12.5px; }
+  thead th { background:#FAFAFA; padding:11px 14px; text-align:left; font-size:10px; font-weight:600; color:#86868B; letter-spacing:0.8px; text-transform:uppercase; border-bottom:1px solid #E5E5EA; white-space:nowrap; }
+  tbody tr { border-bottom:0.5px solid #F2F2F7; transition:background .1s; }
+  tbody tr:hover { background:#FAFFF8; }
+  tbody tr:last-child { border-bottom:none; }
+  tbody td { padding:10px 14px; vertical-align:middle; color:#3A3A3C; font-weight:300; }
+  tbody td input, tbody td textarea, tbody td select {
+    border:none; background:transparent; font-size:12.5px; font-family:'Noto Sans KR',sans-serif;
+    color:#1D1D1F; width:100%; outline:none; resize:none; line-height:1.4;
+  }
+  tbody td input:focus, tbody td textarea:focus, tbody td select:focus {
+    background:#F0FBF6; border-radius:6px; padding:2px 4px;
+  }
+  .num-cell { color:#C7C7CC; font-size:11px; width:32px; text-align:center; }
+
+  /* 상태 뱃지 */
+  .status-select { appearance:none; border-radius:14px; padding:3px 10px; font-size:11px; font-weight:500; text-align:center; cursor:pointer; border:none; outline:none; width:auto !important; }
+  .s0 { background:#F2F2F7; color:#636366; }
+  .s1 { background:#E1F5EE; color:#0F6E50; }
+  .s2 { background:#FFF9E6; color:#8A6200; }
+  .s3 { background:#FFEAEA; color:#8B1A1A; }
+  .s4 { background:#EDE8F8; color:#4A3A8A; }
+  .s5 { background:#E0EEFF; color:#1A4A8A; }
+
+  /* 우선순위 */
+  .pri { display:inline-block; font-size:10px; font-weight:500; padding:2px 8px; border-radius:10px; }
+  .pri-h { background:#FFE8E8; color:#C00000; }
+  .pri-m { background:#FFF9E0; color:#7A6000; }
+  .pri-l { background:#E8F5E9; color:#2E7D32; }
+
+  /* 스크립트 가이드 */
+  .guide-section { margin-top:28px; }
+  .guide-title { font-size:13px; font-weight:600; color:#1D1D1F; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+  .guide-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .guide-card { background:#fff; border:1px solid #E5E5EA; border-radius:12px; padding:18px 20px; }
+  .guide-card-title { font-size:11px; font-weight:600; color:#1D9E75; letter-spacing:0.5px; margin-bottom:8px; }
+  .guide-card-text { font-size:12px; color:#3A3A3C; line-height:1.7; font-weight:300; white-space:pre-wrap; }
+
+  .tip-bar { background:#1D1D1F; border-radius:12px; padding:16px 22px; margin-top:12px; display:flex; align-items:center; gap:14px; }
+  .tip-bar-text { font-size:12px; color:#86868B; line-height:1.6; font-weight:300; }
+  .tip-bar-text strong { color:#A8F0D0; font-weight:500; }
+
+  .footer { text-align:center; padding:32px 0 20px; font-size:11px; color:#C7C7CC; }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <a class="nav-back" href="index.html">← 메인으로</a>
+  <div class="nav-title">잠재고객 관리시트</div>
+  <div class="nav-brand">USANA MAMA</div>
+</div>
+
+<div class="container">
+
+  <!-- 요약 -->
+  <div class="summary-row">
+    <div class="sum-card"><div class="sum-num total" id="cnt-total">0</div><div class="sum-lbl">총 잠재고객</div></div>
+    <div class="sum-card"><div class="sum-num" id="cnt-s1" style="color:#0F6E50">0</div><div class="sum-lbl">연락 완료</div></div>
+    <div class="sum-card"><div class="sum-num" id="cnt-s2" style="color:#8A6200">0</div><div class="sum-lbl">답장 대기</div></div>
+    <div class="sum-card"><div class="sum-num" id="cnt-s3" style="color:#8B1A1A">0</div><div class="sum-lbl">관심 없음</div></div>
+    <div class="sum-card"><div class="sum-num" id="cnt-s4" style="color:#4A3A8A">0</div><div class="sum-lbl">추가 확인</div></div>
+    <div class="sum-card"><div class="sum-num" id="cnt-s5" style="color:#1A4A8A">0</div><div class="sum-lbl">답장 없음</div></div>
+  </div>
+
+  <!-- 툴바 -->
+  <div class="toolbar">
+    <div class="toolbar-left">
+      <input class="search-box" type="text" placeholder="🔍  이름 또는 메모 검색..." oninput="filterTable()">
+      <select class="filter-select" onchange="filterTable()">
+        <option value="">전체 상태</option>
+        <option value="미연락">미연락</option>
+        <option value="연락 완료">연락 완료</option>
+        <option value="답장 대기 중">답장 대기 중</option>
+        <option value="관심 없음">관심 없음</option>
+        <option value="추가 확인 필요">추가 확인 필요</option>
+        <option value="답장 없음">답장 없음</option>
+      </select>
+      <select class="filter-select" onchange="filterTable()">
+        <option value="">전체 우선순위</option>
+        <option value="높음">높음</option>
+        <option value="중간">중간</option>
+        <option value="낮음">낮음</option>
+      </select>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button class="btn btn-outline" onclick="exportCSV()">CSV 저장</button>
+      <button class="btn btn-green" onclick="addRow()">+ 추가</button>
+    </div>
+  </div>
+
+  <!-- 테이블 -->
+  <div class="table-wrap">
+    <table id="leads-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>이름</th>
+          <th>관계 / 직책</th>
+          <th>연락처</th>
+          <th>라이프스타일 & 관심사</th>
+          <th>건강 고민 / 웰니스 니즈</th>
+          <th>첫 연락일</th>
+          <th>연락 상태</th>
+          <th>우선순위</th>
+          <th>메모 / 다음 액션</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="leads-body"></tbody>
+    </table>
+  </div>
+
+  <!-- 스크립트 가이드 -->
+  <div class="guide-section">
+    <div class="guide-title">💬 상황별 첫 연락 스크립트</div>
+    <div class="guide-grid">
+      <div class="guide-card">
+        <div class="guide-card-title">지인 / 일반 안부</div>
+        <div class="guide-card-text">안녕하세요 ○○씨! 잘 지내시죠? 🌿
+요즘 건강 관리에 관심이 생겨서 공부하다 생각이 나서 연락드렸어요.
+혹시 요즘 피로감이나 면역력 걱정 있으신가요?
+부담 없이 이야기 나눠봐요 😊</div>
+      </div>
+      <div class="guide-card">
+        <div class="guide-card-title">육아맘 타겟</div>
+        <div class="guide-card-text">안녕하세요 어머님! 아이 면역력 챙기는 거 항상 고민이시죠?
+저도 같은 고민으로 유사나 공부 시작했는데 정말 놀라웠어요.
+부담 없이 정보 나눠드릴게요 🌿</div>
+      </div>
+      <div class="guide-card">
+        <div class="guide-card-title">팔로업 (무응답 후)</div>
+        <div class="guide-card-text">안녕하세요! 지난번에 연락드렸는데 바쁘셨죠?
+부담 주려는 게 아니라 정말 좋은 정보가 있어서요.
+딱 5분만 이야기 나눠봐도 괜찮으실까요? 🌿</div>
+      </div>
+    </div>
+    <div class="tip-bar" style="margin-top:12px">
+      <div>💡</div>
+      <div class="tip-bar-text"><strong>핵심 팁</strong> — 모든 고객을 한 번의 거래 대상이 아닌 장기적인 파트너로 대하세요. 데이터는 브라우저에 자동 저장됩니다. CSV 저장 버튼으로 백업하세요.</div>
+    </div>
+  </div>
+  <div class="footer">USANA MAMA · Wellness Consultant · True Health · True Life</div>
+</div>
+
+<script>
+const STATUS = ['미연락','연락 완료','답장 대기 중','관심 없음','추가 확인 필요','답장 없음'];
+const S_CLASS = ['s0','s1','s2','s3','s4','s5'];
+const PRI = ['','높음','중간','낮음'];
+const PRI_CLASS = {'높음':'pri-h','중간':'pri-m','낮음':'pri-l'};
+const SAMPLE = [
+  {name:'김지현',rel:'초등 학부모',tel:'010-1234-5678',life:'육아 & 건강',health:'피로감, 면역력',date:'2026-06-01',status:'연락 완료',pri:'높음',memo:'헬스팩 관심, 샘플 발송 예정'},
+  {name:'이수진',rel:'직장 동료',tel:'010-2345-6789',life:'다이어트',health:'체중 관리, 피부',date:'2026-06-03',status:'답장 대기 중',pri:'중간',memo:'인스타 DM 발송 후 대기'},
+  {name:'박미래',rel:'헬스클럽 친구',tel:'010-3456-7890',life:'운동 & 영양',health:'단백질, 운동 후 회복',date:'2026-06-10',status:'추가 확인 필요',pri:'중간',memo:'가격 고민 중'},
+];
+
+let rows = JSON.parse(localStorage.getItem('usana_leads') || 'null') || SAMPLE;
+
+function save() { localStorage.setItem('usana_leads',''); try{localStorage.setItem('usana_leads',JSON.stringify(rows));}catch(e){} }
+
+function statusClass(s) { return S_CLASS[STATUS.indexOf(s)] || 's0'; }
+
+function render() {
+  const body = document.getElementById('leads-body');
+  body.innerHTML = '';
+  rows.forEach((r,i) => {
+    const sc = statusClass(r.status);
+    const pc = PRI_CLASS[r.pri] || '';
+    const tr = document.createElement('tr');
+    tr.dataset.idx = i;
+    tr.innerHTML = `
+      <td class="num-cell">${i+1}</td>
+      <td><input value="${r.name||''}" placeholder="이름" onchange="update(${i},'name',this.value)"></td>
+      <td><input value="${r.rel||''}" placeholder="관계/직책" onchange="update(${i},'rel',this.value)"></td>
+      <td><input value="${r.tel||''}" placeholder="010-0000-0000" onchange="update(${i},'tel',this.value)"></td>
+      <td><input value="${r.life||''}" placeholder="라이프스타일" onchange="update(${i},'life',this.value)"></td>
+      <td><input value="${r.health||''}" placeholder="건강 고민" onchange="update(${i},'health',this.value)"></td>
+      <td><input type="date" value="${r.date||''}" onchange="update(${i},'date',this.value)"></td>
+      <td><select class="status-select ${sc}" onchange="update(${i},'status',this.value);this.className='status-select '+statusClass(this.value)">
+        ${STATUS.map(s=>`<option value="${s}" ${r.status===s?'selected':''}>${s}</option>`).join('')}
+      </select></td>
+      <td><select onchange="update(${i},'pri',this.value)" style="border:none;background:transparent;font-size:12px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;outline:none;">
+        ${PRI.map(p=>`<option value="${p}" ${r.pri===p?'selected':''}>${p||'—'}</option>`).join('')}
+      </select></td>
+      <td><input value="${r.memo||''}" placeholder="메모 / 다음 액션" onchange="update(${i},'memo',this.value)"></td>
+      <td><button onclick="deleteRow(${i})" style="border:none;background:none;color:#C7C7CC;cursor:pointer;font-size:14px;padding:2px 6px;">✕</button></td>`;
+    body.appendChild(tr);
+  });
+  updateSummary();
+}
+
+function update(i,key,val) { rows[i][key]=val; save(); updateSummary(); }
+function addRow() { rows.push({name:'',rel:'',tel:'',life:'',health:'',date:'',status:'미연락',pri:'',memo:''}); save(); render(); }
+function deleteRow(i) { if(confirm('삭제할까요?')){ rows.splice(i,1); save(); render(); } }
+
+function updateSummary() {
+  document.getElementById('cnt-total').textContent = rows.length;
+  ['연락 완료','답장 대기 중','관심 없음','추가 확인 필요','답장 없음'].forEach((s,i) => {
+    document.getElementById('cnt-s'+(i+1)).textContent = rows.filter(r=>r.status===s).length;
+  });
+}
+
+function filterTable() {
+  const q = document.querySelector('.search-box').value.toLowerCase();
+  const st = document.querySelectorAll('.filter-select')[0].value;
+  const pr = document.querySelectorAll('.filter-select')[1].value;
+  document.querySelectorAll('#leads-body tr').forEach((tr,i) => {
+    const r = rows[i];
+    const match = (!q || (r.name+r.memo+r.rel).toLowerCase().includes(q))
+                && (!st || r.status===st)
+                && (!pr || r.pri===pr);
+    tr.style.display = match ? '' : 'none';
+  });
+}
+
+function exportCSV() {
+  const hdr = ['이름','관계','연락처','라이프스타일','건강고민','첫연락일','연락상태','우선순위','메모'];
+  const csv = [hdr.join(','), ...rows.map(r=>[r.name,r.rel,r.tel,r.life,r.health,r.date,r.status,r.pri,r.memo].map(v=>`"${(v||'').replace(/"/g,'""')}"`).join(','))].join('\n');
+  const a = document.createElement('a');
+  a.href = 'data:text/csv;charset=utf-8,\uFEFF'+encodeURIComponent(csv);
+  a.download = 'USANA_잠재고객_'+new Date().toISOString().slice(0,10)+'.csv';
+  a.click();
+}
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>유사나마마 — 페이스세터 여정 플래너</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans KR', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #F5F5F7;
+    color: #1D1D1F;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    width: 794px;
+    min-height: 1123px;
+    margin: 40px auto;
+    background: #FFFFFF;
+    padding: 64px 64px 48px;
+    position: relative;
+  }
+
+  @media screen {
+    .page { box-shadow: 0 4px 40px rgba(0,0,0,0.06); border-radius: 4px; }
+  }
+
+  /* ── 헤더 ── */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 48px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid #E5E5EA;
+  }
+  .brand { font-size: 11px; font-weight: 500; color: #1D9E75; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+  .page-title { font-size: 28px; font-weight: 600; color: #1D1D1F; letter-spacing: -0.5px; line-height: 1.2; }
+  .page-sub { font-size: 14px; color: #86868B; margin-top: 6px; font-weight: 300; }
+  .header-right { text-align: right; }
+  .header-num { font-size: 48px; font-weight: 200; color: #E5E5EA; letter-spacing: -2px; line-height: 1; }
+  .header-num-lbl { font-size: 10px; color: #86868B; letter-spacing: 1px; margin-top: 2px; }
+
+  /* ── 인트로 ── */
+  .intro {
+    background: #F5F5F7;
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin-bottom: 40px;
+  }
+  .intro p { font-size: 13.5px; line-height: 1.85; color: #3A3A3C; font-weight: 300; }
+  .intro strong { font-weight: 500; color: #1D1D1F; }
+
+  /* ── 섹션 ── */
+  .section { margin-bottom: 28px; }
+  .section-card {
+    border: 1px solid #E5E5EA;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 24px;
+    border-bottom: 1px solid #F2F2F7;
+    background: #FAFAFA;
+  }
+  .step-badge {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: #1D9E75;
+    color: white;
+    font-size: 13px; font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .section-title { font-size: 15px; font-weight: 600; color: #1D1D1F; }
+  .section-sub { font-size: 11px; color: #86868B; margin-top: 2px; }
+  .section-body { padding: 24px; }
+
+  /* ── 입력 영역 ── */
+  .input-label { font-size: 11px; font-weight: 500; color: #86868B; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .input-line {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #E5E5EA;
+    padding: 8px 0;
+    font-size: 13px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #1D1D1F;
+    background: transparent;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .input-line:focus { border-bottom-color: #1D9E75; }
+  .input-line::placeholder { color: #C7C7CC; }
+  .input-box {
+    width: 100%;
+    border: 1px solid #E5E5EA;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 13px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #1D1D1F;
+    background: #FAFAFA;
+    outline: none;
+    resize: none;
+    line-height: 1.7;
+    transition: border-color 0.2s;
+  }
+  .input-box:focus { border-color: #1D9E75; background: white; }
+  .input-box::placeholder { color: #C7C7CC; }
+
+  /* ── 소득 목표 테이블 ── */
+  .income-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+  .income-table th {
+    font-size: 10px; font-weight: 600; color: #86868B;
+    letter-spacing: 0.5px; text-transform: uppercase;
+    padding: 10px 14px; text-align: left;
+    background: #F5F5F7; border-bottom: 1px solid #E5E5EA;
+  }
+  .income-table th:first-child { border-radius: 10px 0 0 0; }
+  .income-table th:last-child { border-radius: 0 10px 0 0; }
+  .income-table td {
+    font-size: 12.5px; color: #3A3A3C; font-weight: 300;
+    padding: 12px 14px; border-bottom: 1px solid #F2F2F7;
+    vertical-align: middle;
+  }
+  .income-table tr:last-child td { border-bottom: none; }
+  .income-table tr:hover td { background: #FAFFF8; }
+  .tag {
+    display: inline-block; font-size: 10px; font-weight: 500;
+    padding: 2px 8px; border-radius: 20px;
+    background: #E1F5EE; color: #1D9E75;
+  }
+
+  /* ── 목표 입력 박스 행 ── */
+  .goal-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    margin-bottom: 16px;
+  }
+  .goal-item { display: flex; flex-direction: column; gap: 6px; }
+
+  /* ── 실행 계획 ── */
+  .action-grid { display: flex; flex-direction: column; gap: 12px; }
+  .action-row {
+    display: flex; align-items: center;
+    padding: 12px 16px;
+    background: #FAFAFA;
+    border-radius: 10px;
+    border: 1px solid #F2F2F7;
+    gap: 16px;
+  }
+  .action-label { flex: 1; font-size: 13px; color: #3A3A3C; font-weight: 300; }
+  .action-label strong { font-weight: 500; color: #1D1D1F; }
+  .action-input {
+    width: 110px;
+    border: 1px solid #E5E5EA;
+    border-radius: 8px;
+    padding: 7px 12px;
+    font-size: 12px;
+    font-family: 'Noto Sans KR', sans-serif;
+    text-align: center;
+    color: #1D1D1F;
+    background: white;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .action-input:focus { border-color: #1D9E75; }
+  .action-input::placeholder { color: #C7C7CC; }
+
+  /* ── 체크박스 행 ── */
+  .check-row {
+    display: flex; align-items: center;
+    padding: 12px 16px;
+    background: #FAFAFA;
+    border-radius: 10px;
+    border: 1px solid #F2F2F7;
+    gap: 16px;
+  }
+  .check-label { flex: 1; font-size: 13px; color: #3A3A3C; font-weight: 300; }
+  .check-options { display: flex; gap: 16px; }
+  .check-opt { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+  .check-opt input { accent-color: #1D9E75; width: 15px; height: 15px; cursor: pointer; }
+  .check-opt span { font-size: 12px; color: #3A3A3C; }
+
+  /* ── 시간 투자 테이블 ── */
+  .time-table { width: 100%; border-collapse: collapse; }
+  .time-table th {
+    font-size: 10px; font-weight: 600; color: #86868B;
+    letter-spacing: 0.5px; text-transform: uppercase;
+    padding: 10px 16px; text-align: left;
+    background: #F5F5F7; border-bottom: 1px solid #E5E5EA;
+  }
+  .time-table td {
+    font-size: 12.5px; color: #3A3A3C; font-weight: 300;
+    padding: 13px 16px; border-bottom: 1px solid #F2F2F7;
+    vertical-align: middle;
+  }
+  .time-table tr:last-child td { border-bottom: none; }
+  .time-badge {
+    display: inline-block; font-size: 10px;
+    padding: 3px 10px; border-radius: 20px;
+    background: #F5F5F7; color: #3A3A3C; font-weight: 400;
+  }
+
+  /* ── 결론 다크 카드 ── */
+  .result-card {
+    background: #1D1D1F;
+    border-radius: 20px;
+    padding: 36px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    margin-top: 8px;
+  }
+  .result-formula { display: flex; align-items: center; gap: 16px; }
+  .result-item { text-align: center; }
+  .result-word { font-size: 16px; font-weight: 600; color: #F5F5F7; letter-spacing: -0.3px; }
+  .result-desc { font-size: 10px; color: #86868B; margin-top: 3px; letter-spacing: 0.3px; }
+  .result-op { font-size: 24px; font-weight: 200; color: #1D9E75; }
+  .result-equals { font-size: 24px; font-weight: 200; color: #1D9E75; }
+  .result-final .result-word { color: #1D9E75; font-size: 20px; }
+
+  .result-right { text-align: right; }
+  .result-quote { font-size: 11px; color: #86868B; line-height: 1.7; max-width: 200px; font-weight: 300; }
+  .result-sig { font-size: 10px; color: #48484A; margin-top: 8px; letter-spacing: 1px; }
+
+  /* ── 푸터 ── */
+  .footer {
+    margin-top: 44px;
+    padding-top: 20px;
+    border-top: 1px solid #E5E5EA;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-brand { font-size: 11px; color: #86868B; }
+  .footer-tag { font-size: 11px; color: #C7C7CC; font-style: italic; }
+
+  @media print {
+    body { background: white; }
+    .page { margin: 0; box-shadow: none; width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- 헤더 -->
+  <div class="header">
+    <div>
+      <div class="brand">USANA MAMA</div>
+      <div class="page-title">페이스세터 여정 플래너</div>
+      <div class="page-sub">목표를 정하고 모든 노력을 다 해보세요 — Pacesetter Journey Planner</div>
+    </div>
+    <div class="header-right">
+      <div class="header-num">PS</div>
+      <div class="header-num-lbl">PLANNER</div>
+    </div>
+  </div>
+
+  <!-- 인트로 -->
+  <div class="intro">
+    <p>
+      페이스세터 자격을 이해하셨다면, 이제 <strong>계획을 세울 단계</strong>입니다.
+      구체적인 목표와 기한을 정하고, 실제 성과로 이어지는 행동을 시작하세요.
+      꾸준히 실천할수록 더 빠르게 성장하고, <strong>첫 번째 마일스톤 보너스</strong>에 더 가까워집니다.
+    </p>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="section">
+    <div class="section-card">
+      <div class="section-header">
+        <div class="step-badge">1</div>
+        <div>
+          <div class="section-title">나에게 필요한 것과 나만의 이유</div>
+          <div class="section-sub">유사나 비즈니스를 시작하는 나만의 동기와 최종 목표</div>
+        </div>
+      </div>
+      <div class="section-body">
+        <div style="margin-bottom:20px">
+          <div class="input-label">유사나 비즈니스를 시작할 때 동기부여가 되는 것은 무엇인가요?</div>
+          <textarea class="input-box" rows="2" placeholder="나만의 이유를 적어주세요..."></textarea>
+        </div>
+        <div>
+          <div class="input-label">궁극적으로 달성하고자 하는 최종 목표는 무엇인가요?</div>
+          <textarea class="input-box" rows="2" placeholder="1년 후, 3년 후 내가 원하는 모습..."></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="section">
+    <div class="section-card">
+      <div class="section-header">
+        <div class="step-badge">2</div>
+        <div>
+          <div class="section-title">소득 목표 선택</div>
+          <div class="section-sub">유사나와 함께하는 첫해 동안 기대하는 소득 수준</div>
+        </div>
+      </div>
+      <div class="section-body">
+        <table class="income-table">
+          <tr>
+            <th>목표 유형</th>
+            <th>소득 범위 예시</th>
+            <th>집중 분야</th>
+          </tr>
+          <tr>
+            <td><span class="tag">제품 비용 충당</span></td>
+            <td>$100 ~ $500 / 월</td>
+            <td>개인 제품 구매 비용 충당</td>
+          </tr>
+          <tr>
+            <td><span class="tag">추가 개인 소득</span></td>
+            <td>$500 ~ $1,500 / 월</td>
+            <td>생활에 도움될 여분의 소득</td>
+          </tr>
+          <tr>
+            <td><span class="tag">대체 개인 소득</span></td>
+            <td>$2,000+ / 월</td>
+            <td>진정한 주 소득원 구축</td>
+          </tr>
+        </table>
+        <div class="goal-row">
+          <div class="goal-item">
+            <div class="input-label">나의 소득 목표</div>
+            <input type="text" class="input-line" placeholder="$ _______ / 월">
+          </div>
+          <div class="goal-item">
+            <div class="input-label">목표 달성 기한</div>
+            <input type="text" class="input-line" placeholder="____년 ____월까지">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="section">
+    <div class="section-card">
+      <div class="section-header">
+        <div class="step-badge">3</div>
+        <div>
+          <div class="section-title">실행 계획 설정</div>
+          <div class="section-sub">주간 실행 계획으로 목표를 현실로 — 일관적인 성장의 핵심</div>
+        </div>
+      </div>
+      <div class="section-body">
+        <div class="action-grid">
+          <div class="action-row">
+            <div class="action-label"><strong>주간 업무 시간</strong></div>
+            <input type="text" class="action-input" placeholder="____ 시간 / 주">
+          </div>
+          <div class="action-row">
+            <div class="action-label"><strong>신규 연락처 접촉</strong></div>
+            <input type="text" class="action-input" placeholder="____ 명 / 주">
+          </div>
+          <div class="action-row">
+            <div class="action-label"><strong>신규 브랜드 파트너 후원</strong></div>
+            <input type="text" class="action-input" placeholder="____ 명 / 주">
+          </div>
+          <div class="action-row">
+            <div class="action-label"><strong>신규 프리퍼드 커스터머 등록</strong></div>
+            <input type="text" class="action-input" placeholder="____ 명 / 월">
+          </div>
+          <div class="check-row">
+            <div class="check-label"><strong>멘토 / 팀원과 정기적인 연락</strong></div>
+            <div class="check-options">
+              <label class="check-opt"><input type="radio" name="mentor"> <span>✅ 예</span></label>
+              <label class="check-opt"><input type="radio" name="mentor"> <span>⬜ 아직 없음</span></label>
+            </div>
+          </div>
+          <div class="check-row">
+            <div class="check-label"><strong>효율적인 프레젠테이션 방법 학습</strong></div>
+            <div class="check-options">
+              <label class="check-opt"><input type="radio" name="presentation"> <span>✅ 예</span></label>
+              <label class="check-opt"><input type="radio" name="presentation"> <span>⬜ 아직 없음</span></label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="section">
+    <div class="section-card">
+      <div class="section-header">
+        <div class="step-badge">4</div>
+        <div>
+          <div class="section-title">투자할 시간 선택</div>
+          <div class="section-sub">매주 비즈니스 성장에 투자할 시간 — 원하는 속도로 목표 달성</div>
+        </div>
+      </div>
+      <div class="section-body">
+        <table class="time-table">
+          <tr>
+            <th>목표 유형</th>
+            <th>제안 시간 투자</th>
+            <th>나의 선택</th>
+          </tr>
+          <tr>
+            <td>제품 비용 충당</td>
+            <td><span class="time-badge">3 ~ 7시간 / 주</span></td>
+            <td><input type="radio" name="time" style="accent-color:#1D9E75; width:16px; height:16px; cursor:pointer;"></td>
+          </tr>
+          <tr>
+            <td>여분의 소득</td>
+            <td><span class="time-badge">7 ~ 15시간 / 주</span></td>
+            <td><input type="radio" name="time" style="accent-color:#1D9E75; width:16px; height:16px; cursor:pointer;"></td>
+          </tr>
+          <tr>
+            <td>주 소득원 구축</td>
+            <td><span class="time-badge">15 ~ 30+시간 / 주</span></td>
+            <td><input type="radio" name="time" style="accent-color:#1D9E75; width:16px; height:16px; cursor:pointer;"></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 결론 다크 카드 -->
+  <div class="result-card">
+    <div class="result-formula">
+      <div class="result-item">
+        <div class="result-word">목표</div>
+        <div class="result-desc">Goal</div>
+      </div>
+      <div class="result-op">+</div>
+      <div class="result-item">
+        <div class="result-word">약속</div>
+        <div class="result-desc">Commitment</div>
+      </div>
+      <div class="result-equals">=</div>
+      <div class="result-item result-final">
+        <div class="result-word">결과</div>
+        <div class="result-desc" style="color:#A8F0D0">Result</div>
+      </div>
+    </div>
+    <div class="result-right">
+      <div class="result-quote">이 계획을 꾸준히 실천할수록<br>더 빠르게 성장할 수 있습니다.</div>
+      <div class="result-sig">USANA MAMA · True Health · True Life</div>
+    </div>
+  </div>
+
+  <!-- 푸터 -->
+  <div class="footer">
+    <div class="footer-brand">USANA MAMA · Wellness Consultant</div>
+    <div class="footer-tag">Pacesetter Journey Planner</div>
+  </div>
+
+</div>
+
+</body>
+</html>

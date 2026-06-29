@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>USANA MAMA — 마일스톤 완료 체크리스트</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Noto Sans KR','Inter',-apple-system,sans-serif;background:#F5F5F7;color:#1D1D1F;-webkit-font-smoothing:antialiased;}
+  .top-nav{background:#fff;border-bottom:1px solid #E5E5EA;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+  .nav-brand{font-size:11px;font-weight:500;color:#1D9E75;letter-spacing:2px;}
+  .nav-title{font-size:15px;font-weight:600;color:#1D1D1F;}
+  .nav-back{font-size:12px;color:#86868B;text-decoration:none;}
+  .nav-back:hover{color:#1D9E75;}
+  .container{max-width:860px;margin:0 auto;padding:48px 24px 64px;}
+
+  /* 헤더 */
+  .page-header{margin-bottom:40px;}
+  .header-label{font-size:11px;font-weight:500;color:#1D9E75;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;}
+  .header-title{font-size:32px;font-weight:600;color:#1D1D1F;letter-spacing:-1px;line-height:1.2;margin-bottom:8px;}
+  .header-sub{font-size:14px;color:#86868B;font-weight:300;}
+
+  /* 진행률 요약 */
+  .progress-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:36px;}
+  .ps-card{background:#fff;border:1px solid #E5E5EA;border-radius:14px;padding:18px 20px;position:relative;overflow:hidden;}
+  .ps-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+  .ps1::before{background:#1D9E75;}
+  .ps2::before{background:#5B7CF0;}
+  .ps3::before{background:#FF6B35;}
+  .ps-num{font-size:28px;font-weight:700;line-height:1;margin-bottom:4px;}
+  .ps1 .ps-num{color:#1D9E75;}
+  .ps2 .ps-num{color:#5B7CF0;}
+  .ps3 .ps-num{color:#FF6B35;}
+  .ps-label{font-size:12px;font-weight:600;color:#1D1D1F;margin-bottom:2px;}
+  .ps-sub{font-size:11px;color:#86868B;font-weight:300;}
+  .ps-prog{height:4px;background:#F2F2F7;border-radius:2px;margin-top:10px;overflow:hidden;}
+  .ps-prog-fill{height:4px;border-radius:2px;transition:width .4s ease;}
+  .ps1 .ps-prog-fill{background:#1D9E75;}
+  .ps2 .ps-prog-fill{background:#5B7CF0;}
+  .ps3 .ps-prog-fill{background:#FF6B35;}
+  .ps-count{font-size:10px;color:#86868B;margin-top:4px;text-align:right;}
+
+  /* 탭 */
+  .milestone-tabs{display:flex;gap:8px;margin-bottom:24px;}
+  .mtab{padding:10px 24px;border-radius:24px;font-size:13px;font-weight:500;cursor:pointer;border:1px solid #E5E5EA;background:#fff;color:#86868B;font-family:'Noto Sans KR',sans-serif;transition:all .15s;display:flex;align-items:center;gap:8px;}
+  .mtab.active.t1{background:#1D9E75;border-color:#1D9E75;color:#fff;}
+  .mtab.active.t2{background:#5B7CF0;border-color:#5B7CF0;color:#fff;}
+  .mtab.active.t3{background:#FF6B35;border-color:#FF6B35;color:#fff;}
+  .mtab:hover:not(.active){background:#F5F5F7;}
+  .milestone-panel{display:none;}
+  .milestone-panel.active{display:block;}
+
+  /* 마일스톤 카드 */
+  .ms-card{background:#fff;border:1px solid #E5E5EA;border-radius:18px;overflow:hidden;margin-bottom:16px;}
+  .ms-header{padding:24px 28px 20px;border-bottom:1px solid #F2F2F7;}
+  .ms-header.h1{background:linear-gradient(135deg,#E8FAF3,#F0FBF6);}
+  .ms-header.h2{background:linear-gradient(135deg,#EEF0FF,#F0F3FF);}
+  .ms-header.h3{background:linear-gradient(135deg,#FFF2EE,#FFF5F2);}
+  .ms-num-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+  .ms-badge{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;flex-shrink:0;}
+  .b1{background:#1D9E75;}
+  .b2{background:#5B7CF0;}
+  .b3{background:#FF6B35;}
+  .ms-milestone-title{font-size:18px;font-weight:600;color:#1D1D1F;letter-spacing:-0.3px;}
+  .ms-congrats{font-size:13px;color:#3A3A3C;line-height:1.7;font-weight:300;margin-bottom:8px;}
+  .ms-congrats strong{font-weight:500;color:#1D1D1F;}
+  .ms-note{font-size:12px;color:#86868B;line-height:1.6;font-weight:300;padding:10px 14px;border-radius:10px;}
+  .ms-note.n1{background:#E1F5EE;}
+  .ms-note.n2{background:#EEF0FF;}
+  .ms-note.n3{background:#FFF2EE;}
+
+  /* 체크리스트 섹션 */
+  .ms-body{padding:24px 28px;}
+  .section-group{margin-bottom:24px;}
+  .section-group:last-child{margin-bottom:0;}
+  .group-label{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+  .g1 .group-label{color:#1D9E75;}
+  .g2 .group-label{color:#5B7CF0;}
+  .g3 .group-label{color:#FF6B35;}
+  .group-line{flex:1;height:1px;}
+  .g1 .group-line{background:linear-gradient(to right,#B8E8D4,transparent);}
+  .g2 .group-line{background:linear-gradient(to right,#C8D0F8,transparent);}
+  .g3 .group-line{background:linear-gradient(to right,#FFD0C0,transparent);}
+
+  /* 체크 아이템 */
+  .check-items{display:flex;flex-direction:column;gap:8px;}
+  .check-item{display:flex;gap:12px;align-items:flex-start;padding:12px 16px;border-radius:12px;border:1px solid #F2F2F7;background:#FAFAFA;cursor:pointer;transition:all .15s;}
+  .check-item:hover{border-color:#E0E0E0;background:#F5F5F7;}
+  .check-item.done{background:#F0FBF6;border-color:#B8E8D4;}
+  .check-item.done.d2{background:#F0F3FF;border-color:#C8D0F8;}
+  .check-item.done.d3{background:#FFF5F2;border-color:#FFD0C0;}
+  .ci-box{width:20px;height:20px;border:1.5px solid #D0D0D0;border-radius:5px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .15s;margin-top:1px;}
+  .check-item.done .ci-box{border-color:#1D9E75;background:#1D9E75;}
+  .check-item.done.d2 .ci-box{border-color:#5B7CF0;background:#5B7CF0;}
+  .check-item.done.d3 .ci-box{border-color:#FF6B35;background:#FF6B35;}
+  .ci-check{font-size:11px;color:#fff;opacity:0;transition:opacity .15s;}
+  .check-item.done .ci-check{opacity:1;}
+  .ci-text{font-size:13px;color:#3A3A3C;line-height:1.6;font-weight:300;}
+  .check-item.done .ci-text{color:#0F6E50;}
+  .check-item.done.d2 .ci-text{color:#2A3FAA;}
+  .check-item.done.d3 .ci-text{color:#B03010;}
+
+  /* 완료 배너 */
+  .complete-banner{border-radius:14px;padding:20px 24px;text-align:center;margin-top:20px;display:none;}
+  .complete-banner.show{display:block;}
+  .cb1{background:linear-gradient(135deg,#0F6E50,#1D9E75);}
+  .cb2{background:linear-gradient(135deg,#2A3FAA,#5B7CF0);}
+  .cb3{background:linear-gradient(135deg,#C04010,#FF6B35);}
+  .cb-icon{font-size:28px;margin-bottom:6px;}
+  .cb-title{font-size:16px;font-weight:600;color:#fff;margin-bottom:4px;}
+  .cb-sub{font-size:12px;color:rgba(255,255,255,0.75);font-weight:300;}
+
+  /* 전체 진행 바 */
+  .total-progress{background:#fff;border:1px solid #E5E5EA;border-radius:14px;padding:20px 24px;margin-bottom:28px;}
+  .tp-title{font-size:12px;font-weight:600;color:#1D1D1F;margin-bottom:12px;display:flex;justify-content:space-between;}
+  .tp-bars{display:flex;flex-direction:column;gap:8px;}
+  .tp-row{display:flex;align-items:center;gap:12px;}
+  .tp-label{font-size:11px;color:#86868B;width:80px;flex-shrink:0;}
+  .tp-bar-bg{flex:1;height:6px;background:#F2F2F7;border-radius:3px;overflow:hidden;}
+  .tp-bar-fill{height:6px;border-radius:3px;transition:width .4s ease;}
+  .f1{background:#1D9E75;}
+  .f2{background:#5B7CF0;}
+  .f3{background:#FF6B35;}
+  .tp-pct{font-size:11px;font-weight:600;width:36px;text-align:right;flex-shrink:0;}
+  .p1{color:#1D9E75;}
+  .p2{color:#5B7CF0;}
+  .p3{color:#FF6B35;}
+
+  .footer{text-align:center;padding:36px 0 20px;font-size:11px;color:#C7C7CC;}
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <a class="nav-back" href="index.html">← 메인으로</a>
+  <div class="nav-title">마일스톤 완료 체크리스트</div>
+  <div class="nav-brand">USANA MAMA</div>
+</div>
+
+<div class="container">
+
+  <div class="page-header">
+    <div class="header-label">USANA MAMA · Milestone Checklist</div>
+    <div class="header-title">마일스톤 완료 체크리스트</div>
+    <div class="header-sub">단계별 성장을 확인하고 페이스세터를 향해 나아가세요 🌿</div>
+  </div>
+
+  <!-- 전체 진행률 -->
+  <div class="total-progress">
+    <div class="tp-title">
+      <span>📊 전체 달성 현황</span>
+      <span id="total-pct-text" style="color:#1D9E75;">0 / 27 완료</span>
+    </div>
+    <div class="tp-bars">
+      <div class="tp-row">
+        <div class="tp-label">마일스톤 1</div>
+        <div class="tp-bar-bg"><div class="tp-bar-fill f1" id="bar1" style="width:0%"></div></div>
+        <div class="tp-pct p1" id="pct1">0%</div>
+      </div>
+      <div class="tp-row">
+        <div class="tp-label">마일스톤 2</div>
+        <div class="tp-bar-bg"><div class="tp-bar-fill f2" id="bar2" style="width:0%"></div></div>
+        <div class="tp-pct p2" id="pct2">0%</div>
+      </div>
+      <div class="tp-row">
+        <div class="tp-label">마일스톤 3</div>
+        <div class="tp-bar-bg"><div class="tp-bar-fill f3" id="bar3" style="width:0%"></div></div>
+        <div class="tp-pct p3" id="pct3">0%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 요약 카드 -->
+  <div class="progress-summary">
+    <div class="ps-card ps1">
+      <div class="ps-num" id="cnt1">0</div>
+      <div class="ps-label">마일스톤 1</div>
+      <div class="ps-sub">학습 & 공유 기초 다지기</div>
+      <div class="ps-prog"><div class="ps-prog-fill" id="pfill1" style="width:0%"></div></div>
+      <div class="ps-count" id="pcnt1">0 / 11</div>
+    </div>
+    <div class="ps-card ps2">
+      <div class="ps-num" id="cnt2">0</div>
+      <div class="ps-label">마일스톤 2</div>
+      <div class="ps-sub">팀 구축 & 모멘텀 확대</div>
+      <div class="ps-prog"><div class="ps-prog-fill" id="pfill2" style="width:0%"></div></div>
+      <div class="ps-count" id="pcnt2">0 / 10</div>
+    </div>
+    <div class="ps-card ps3">
+      <div class="ps-num" id="cnt3">0</div>
+      <div class="ps-label">마일스톤 3</div>
+      <div class="ps-sub">팀원 지원 & 페이스세터</div>
+      <div class="ps-prog"><div class="ps-prog-fill" id="pfill3" style="width:0%"></div></div>
+      <div class="ps-count" id="pcnt3">0 / 11</div>
+    </div>
+  </div>
+
+  <!-- 탭 -->
+  <div class="milestone-tabs">
+    <button class="mtab t1 active" onclick="showM(1,this)"><span>🟢</span> 마일스톤 1</button>
+    <button class="mtab t2" onclick="showM(2,this)"><span>🔵</span> 마일스톤 2</button>
+    <button class="mtab t3" onclick="showM(3,this)"><span>🟠</span> 마일스톤 3</button>
+  </div>
+
+  <!-- 마일스톤 1 -->
+  <div class="milestone-panel active" id="m1">
+    <div class="ms-card">
+      <div class="ms-header h1">
+        <div class="ms-num-row">
+          <div class="ms-badge b1">1</div>
+          <div class="ms-milestone-title">마일스톤 1 완료 체크리스트</div>
+        </div>
+        <div class="ms-congrats">첫 도전을 완료하신 것을 <strong>축하드립니다!</strong> 이제는 잠시 멈추셔서 지금까지 이루신 성과를 되돌아보실 시간입니다.<br><br>마일스톤 보너스 1을 달성하셨다면 <strong>고객과의 진정한 관계가 시작</strong>되었음을 의미합니다!</div>
+        <div class="ms-note n1">💡 아직 달성하지 못하셨더라도 괜찮아요. 다음 마일스톤 2에 도전하실 수 있습니다. 모든 노력이 중요합니다. 도전을 멈추지 마세요!</div>
+      </div>
+      <div class="ms-body">
+
+        <div class="section-group g1">
+          <div class="group-label">📚 학습 & 설정 사항 <div class="group-line"></div></div>
+          <div class="check-items">
+            <div class="check-item" onclick="toggle(this,'m1','l0')" data-key="m1_l0">
+              <div class="ci-box"><span class="ci-check">✓</span></div>
+              <div class="ci-text">즉시 취득할 수 있는 보너스의 자격 요건을 이해하였다 (마일스톤 보너스, 신규 세일즈 보너스).</div>
+            </div>
+            <div class="check-item" onclick="toggle(this,'m1','l1')" data-key="m1_l1">
+              <div class="ci-box"><span class="ci-check">✓</span></div>
+              <div class="ci-text">보상 플랜 기본 과정을 완료하였다.</div>
+            </div>
+            <div class="check-item" onclick="toggle(this,'m1','l2')" data-key="m1_l2">
+              <div class="ci-box"><span class="ci-check">✓</span></div>
+              <div class="ci-text">페이스세터 개요 비디오를 시청하고 자격 요건을 이해하였다.</div>
+            </div>
+            <div class="check-item" onclick="toggle(this,'m1','l3')" data-key="m1_l3">
+              <div class="ci-box"><span class="ci-check">✓</span></div>
+              <div class="ci-text">소득 목표와 매주 얼마나 많은 시간을 투자할 것인지를 작성한 나의 실행 워크시트를 작성하였다.</div>
+            </div>
+            <div class="check-item" onclick="toggle(this,'m1','l4')" data-key="m1_l4">
+              <div class="ci-box"><span class="ci-check">✓</span></div>
+              <div class="ci-text">유사나 계정을 설정하고 유사나 허브 앱을 다운로드하였다.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-group g1">
+          <div class="group-label">🌿 공유 <div class="group-line"></div></div>
+          <div class="check-items">
+            <div class="check-item" onclick="toggle(this,'m1','s0')" data-key="m1_s0">
+              <div class="ci-box"><span class="ci-check">✓</span></div>
+              <div class="ci-text">시도해볼 제품 2~3가지를 선택하고 공유할 내용을 학습하였다.</div>
+            </div>
+            <div class="check-item" onclick="toggle(this,'m1','s1')" data-key="m1_s1">
+              <div class="ci-box"><span class="ci-check">✓</span></div>
+              <div class="ci-text">구독 & 절약 설정 비디오를 시청하고 자신의 주문에 대한 구독 & 절약 설정을 성공적으로 완료하였다.</div>
+            </div>
+            <div class="check-item" onclick="toggle(this,'m1','s2')" data-key="m1_s2">
+              <div class="ci-box"><span class="ci-check">✓</span></div>
+              <div class="ci-text">메모리 조거와 잠재고객 목록 템플릿을 복사하고 자신만의 목록을 구축하기 시작하였다.</div>
+            </div>
+            <div class="check-item" onclick="toggle(this,'m1','s3')" data-key="m1_s3">
+              <div class="ci-box"><span class="ci-check">✓</span></div>
+              <div class="ci-text">잠재고객 5명을 선택하여 대화를 시작하였다 (필요할 경우 조언을 받기 위한 멘토 포함).</div>
+            </div>
+            <div class="check-item" onclick="toggle(this,'m1','s4')" data-key="m1_s4">
+              <div class="ci-box"><span class="ci-check">✓</span></div>
+              <div class="ci-text">유사나 제품을 시험 사용해보고 자신만의 제품 스토리를 작성하였으며 잠재고객 목록에 있는 사람이나 온라인으로 최소 10명 이상과 공유하였다.</div>
+            </div>
+            <div class="check-item" onclick="toggle(this,'m1','s5')" data-key="m1_s5">
+              <div class="ci-box"><span class="ci-check">✓</span></div>
+              <div class="ci-text">자신의 진행 상태를 검토하고 질문할 기회를 위해 멘토와 간략한 상담 약속을 정하였다.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="complete-banner cb1" id="banner1">
+          <div class="cb-icon">🎉</div>
+          <div class="cb-title">마일스톤 1 체크리스트 완료!</div>
+          <div class="cb-sub">대단해요! 이제 마일스톤 2에 도전하세요 →</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 마일스톤 2 -->
+  <div class="milestone-panel" id="m2">
+    <div class="ms-card">
+      <div class="ms-header h2">
+        <div class="ms-num-row">
+          <div class="ms-badge b2">2</div>
+          <div class="ms-milestone-title">마일스톤 2 완료 체크리스트</div>
+        </div>
+        <div class="ms-congrats">마일스톤 2 자격을 취득하신 것을 <strong>축하드립니다!</strong> 이제는 유사나를 공유하고 사람들을 초대하는 일에 자신감이 생기셨을 것입니다.<br><br>팀을 성장시키고 다른 사람들이 유사나 여정을 함께하기를 초대함으로써 <strong>진정한 모멘텀을 구축</strong>하셨습니다!</div>
+        <div class="ms-note n2">💡 아직 달성하지 못하셨더라도 걱정 마세요. 노력을 멈추지 않고 계속해서 유사나를 공유하신다면 페이스세터 자격을 취득하실 수 있습니다!</div>
+      </div>
+      <div class="ms-body">
+
+        <div class="section-group g2">
+          <div class="group-label">📚 학습 <div class="group-line"></div></div>
+          <div class="check-items">
+            <div class="check-item d2" onclick="toggle2(this,'m2','l0')" data-key="m2_l0">
+              <div class="ci-box"><span class="ci-check">✓</span></div>
+              <div class="ci-text">신규 브랜드 파트너를 등록하는 방법에 관한 비디오를 시청하고 내용을 이해하였다.</div>
+            </div>
+            <div class="check-item d2" onclick="toggle2(this,'m2','l1')" data-key="m2_l1">
+              <div class="ci-box"><span class="ci-check">✓</span></div>
+              <div class="ci-text">일반적인 부정적 반응에 대처하는 데 자신감이 생겼다.</div>
+            </div>
+            <div class="check-item d2" onclick="toggle2(this,'m2','l2')" data-key="m2_l2">
+              <div class="ci-box"><span class="ci-check">✓</span></div>
+              <div class="ci-text">잠재고객 이메일 가이드를 읽고 실제 대화에 사용할 템플릿을 1~2개 저장하였다.</div>
+            </div>
+            <div class="check-item d2" onclick="toggle2(this,'m2','l3')" data-key="m2_l3">
+              <div class="ci-box"><span class="ci-check">✓</span></div>
+              <div class="ci-text">추후 관리의 중요성을 이해하고 잠재고객에 관한 추후 관리를 언제 어떻게 해야 하는지 이해하였다.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-group g2">
+          <div class="group-label">🌿 공유 <div class="group-line"></div></div>
+          <div class="check-items">
+            <div class="check-item d2" onclick="toggle2(this,'m2','s0')" data-key="m2_s0">
+              <div class="ci-box"><span class="ci-check">✓</span></div>
+              <div class="ci-text">최소 10명의 잠재고객과 경험을 공유하고 추후 관리를 수행하였다.</div>
+            </div>
+            <div class="check-item d2" onclick="toggle2(this,'m2','s1')" data-key="m2_s1">
+              <div class="ci-box"><span class="ci-check">✓</span></div>
+              <div class="ci-text">잠재고객과 지속적으로 연락을 유지할 수 있도록 매주 최소 한 번 메시지 또는 이메일을 보냈다.</div>
+            </div>
+            <div class="check-item d2" onclick="toggle2(this,'m2','s2')" data-key="m2_s2">
+              <div class="ci-box"><span class="ci-check">✓</span></div>
+              <div class="ci-text">최소 2명의 프리퍼드 커스터머, 2명의 브랜드 파트너를 성공적으로 등록하였다.</div>
+            </div>
+            <div class="check-item d2" onclick="toggle2(this,'m2','s3')" data-key="m2_s3">
+              <div class="ci-box"><span class="ci-check">✓</span></div>
+              <div class="ci-text">각 팀원이 실적점수를 받을 수 있는 첫 주문을 할 수 있게 도와주었다.</div>
+            </div>
+            <div class="check-item d2" onclick="toggle2(this,'m2','s4')" data-key="m2_s4">
+              <div class="ci-box"><span class="ci-check">✓</span></div>
+              <div class="ci-text">멘토와 약속을 정해 진행 상태를 검토하고 다음 단계를 계획하였다.</div>
+            </div>
+            <div class="check-item d2" onclick="toggle2(this,'m2','s5')" data-key="m2_s5">
+              <div class="ci-box"><span class="ci-check">✓</span></div>
+              <div class="ci-text">잠재고객 목록에서 연락 여부, 추후 관리 및 팀원 등록 상태를 업데이트하고 관리하였다.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="complete-banner cb2" id="banner2">
+          <div class="cb-icon">🚀</div>
+          <div class="cb-title">마일스톤 2 체크리스트 완료!</div>
+          <div class="cb-sub">훌륭해요! 이제 마일스톤 3 — 페이스세터를 향해 →</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 마일스톤 3 -->
+  <div class="milestone-panel" id="m3">
+    <div class="ms-card">
+      <div class="ms-header h3">
+        <div class="ms-num-row">
+          <div class="ms-badge b3">3</div>
+          <div class="ms-milestone-title">마일스톤 3 완료 체크리스트</div>
+        </div>
+        <div class="ms-congrats">지금까지 <strong>놀라운 성장</strong>을 보여주신 것을 축하드립니다! 페이스세터 자격을 이미 취득하셨거나 아직 도전 중이시거나, 지금처럼 노력을 아끼지 마시고 등록·지원·성장을 계속해주세요.<br><br>마일스톤 보너스 3을 충족하셨다면 — <strong>축하드립니다, 페이스세터가 되셨습니다! 🏆</strong></div>
+        <div class="ms-note n3">💡 이번에 자격을 취득하지 못하셨더라도 걱정 마세요. 내년에도 유사나 가입일을 기준으로 페이스세터에 다시 도전하실 수 있습니다!</div>
+      </div>
+      <div class="ms-body">
+
+        <div class="section-group g3">
+          <div class="group-label">📚 학습 도구 <div class="group-line"></div></div>
+          <div class="check-items">
+            <div class="check-item d3" onclick="toggle3(this,'m3','l0')" data-key="m3_l0">
+              <div class="ci-box"><span class="ci-check">✓</span></div>
+              <div class="ci-text">매칭 보너스 비디오를 시청하고 내용을 이해하였다.</div>
+            </div>
+            <div class="check-item d3" onclick="toggle3(this,'m3','l1')" data-key="m3_l1">
+              <div class="ci-box"><span class="ci-check">✓</span></div>
+              <div class="ci-text">나의 13주 자격 취득 상태를 검토하고 잘된 점을 파악하였다.</div>
+            </div>
+            <div class="check-item d3" onclick="toggle3(this,'m3','l2')" data-key="m3_l2">
+              <div class="ci-box"><span class="ci-check">✓</span></div>
+              <div class="ci-text">반복해서 사용하거나 신규 팀원과 공유할 도구 또는 팸플릿을 저장하였다.</div>
+            </div>
+            <div class="check-item d3" onclick="toggle3(this,'m3','l3')" data-key="m3_l3">
+              <div class="ci-box"><span class="ci-check">✓</span></div>
+              <div class="ci-text">유사나 이벤트에 관한 최신 정보를 확인하고 나의 비즈니스 여정을 온라인으로 꾸준히 공유하였다.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-group g3">
+          <div class="group-label">👥 팀원 지원 & 공유 <div class="group-line"></div></div>
+          <div class="check-items">
+            <div class="check-item d3" onclick="toggle3(this,'m3','s0')" data-key="m3_s0">
+              <div class="ci-box"><span class="ci-check">✓</span></div>
+              <div class="ci-text">신규 팀원에게 환영 메시지를 전송하였다.</div>
+            </div>
+            <div class="check-item d3" onclick="toggle3(this,'m3','s1')" data-key="m3_s1">
+              <div class="ci-box"><span class="ci-check">✓</span></div>
+              <div class="ci-text">신규 브랜드 파트너 최소 한 명의 온보딩 과정을 도와주었다.</div>
+            </div>
+            <div class="check-item d3" onclick="toggle3(this,'m3','s2')" data-key="m3_s2">
+              <div class="ci-box"><span class="ci-check">✓</span></div>
+              <div class="ci-text">신규 팀원에게 추후 관리를 위한 메시지를 보내고 도움을 제안하였다.</div>
+            </div>
+            <div class="check-item d3" onclick="toggle3(this,'m3','s3')" data-key="m3_s3">
+              <div class="ci-box"><span class="ci-check">✓</span></div>
+              <div class="ci-text">팀원과 유용한 트레이닝 자료 또는 리소스를 공유하였다.</div>
+            </div>
+            <div class="check-item d3" onclick="toggle3(this,'m3','s4')" data-key="m3_s4">
+              <div class="ci-box"><span class="ci-check">✓</span></div>
+              <div class="ci-text">팀원이 페이스세터 자격에 도전하도록 격려하였다.</div>
+            </div>
+            <div class="check-item d3" onclick="toggle3(this,'m3','s5')" data-key="m3_s5">
+              <div class="ci-box"><span class="ci-check">✓</span></div>
+              <div class="ci-text">다른 사람들과 나의 페이스세터 자격 취득 경험과 제품 사용 경험을 공유하였다.</div>
+            </div>
+            <div class="check-item d3" onclick="toggle3(this,'m3','s6')" data-key="m3_s6">
+              <div class="ci-box"><span class="ci-check">✓</span></div>
+              <div class="ci-text">장기적인 비즈니스 성장 목표를 정하고 기록하였다 (소득 목표, 팀 규모, 라이프스타일 비전 등).</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="complete-banner cb3" id="banner3">
+          <div class="cb-icon">🏆</div>
+          <div class="cb-title">마일스톤 3 완료 — 페이스세터 달성!</div>
+          <div class="cb-sub">True Health · True Life · 당신이라면 할 수 있습니다!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">USANA MAMA · Wellness Consultant · True Health · True Life</div>
+</div>
+
+<script>
+const TOTALS = {m1: 11, m2: 10, m3: 11};
+let state = JSON.parse(localStorage.getItem('ms_checklist') || '{}');
+
+function save(){ localStorage.setItem('ms_checklist', JSON.stringify(state)); }
+
+function toggle(el, ms, key){
+  const k = ms+'_'+key;
+  state[k] = !state[k];
+  el.classList.toggle('done', state[k]);
+  save(); updateAll();
+}
+function toggle2(el, ms, key){
+  const k = ms+'_'+key;
+  state[k] = !state[k];
+  el.classList.toggle('done', state[k]);
+  el.classList.toggle('d2', true);
+  if(!state[k]) el.classList.remove('done');
+  save(); updateAll();
+}
+function toggle3(el, ms, key){
+  const k = ms+'_'+key;
+  state[k] = !state[k];
+  el.classList.toggle('done', state[k]);
+  save(); updateAll();
+}
+
+function countDone(ms){
+  return Object.keys(state).filter(k => k.startsWith(ms+'_') && state[k]).length;
+}
+
+function updateAll(){
+  [1,2,3].forEach(n => {
+    const ms = 'm'+n;
+    const done = countDone(ms);
+    const total = TOTALS[ms];
+    const pct = Math.round(done/total*100);
+    document.getElementById('cnt'+n).textContent = done;
+    document.getElementById('pfill'+n).style.width = pct+'%';
+    document.getElementById('pcnt'+n).textContent = done+' / '+total;
+    document.getElementById('bar'+n).style.width = pct+'%';
+    document.getElementById('pct'+n).textContent = pct+'%';
+    const banner = document.getElementById('banner'+n);
+    if(done === total) banner.classList.add('show');
+    else banner.classList.remove('show');
+  });
+  const total = countDone('m1')+countDone('m2')+countDone('m3');
+  document.getElementById('total-pct-text').textContent = total+' / 32 완료';
+}
+
+function showM(n, btn){
+  document.querySelectorAll('.milestone-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.mtab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('m'+n).classList.add('active');
+  btn.classList.add('active');
+}
+
+// 초기 상태 복원
+document.querySelectorAll('[data-key]').forEach(el => {
+  const k = el.dataset.key;
+  if(state[k]){
+    el.classList.add('done');
+    if(k.startsWith('m2_')) el.classList.add('d2');
+    if(k.startsWith('m3_')) el.classList.add('d3');
+  }
+});
+updateAll();
+</script>
+</body>
+</html>

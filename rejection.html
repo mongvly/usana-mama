@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>USANA MAMA — 28일 거절 챌린지</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Noto Sans KR','Inter',-apple-system,sans-serif; background:#F5F5F7; color:#1D1D1F; -webkit-font-smoothing:antialiased; }
+
+  .top-nav { background:#fff; border-bottom:1px solid #E5E5EA; padding:14px 32px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; }
+  .nav-brand { font-size:11px; font-weight:500; color:#1D9E75; letter-spacing:2px; }
+  .nav-title { font-size:15px; font-weight:600; color:#1D1D1F; }
+  .nav-back { font-size:12px; color:#86868B; text-decoration:none; }
+  .nav-back:hover { color:#1D9E75; }
+
+  .container { max-width:860px; margin:0 auto; padding:52px 24px 64px; }
+
+  /* 헤더 */
+  .page-header { margin-bottom:44px; }
+  .header-label { font-size:11px; font-weight:500; color:#1D9E75; letter-spacing:2px; text-transform:uppercase; margin-bottom:12px; }
+  .header-title { font-size:34px; font-weight:600; color:#1D1D1F; letter-spacing:-1px; line-height:1.2; margin-bottom:8px; }
+  .header-title span { color:#1D9E75; }
+  .header-sub { font-size:14px; color:#86868B; font-weight:300; margin-bottom:24px; }
+
+  .header-body { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:28px; }
+  .header-desc { font-size:13.5px; color:#3A3A3C; line-height:1.85; font-weight:300; }
+  .header-desc strong { font-weight:500; color:#1D1D1F; }
+  .ted-card { background:#1D1D1F; border-radius:14px; padding:22px; display:flex; flex-direction:column; justify-content:space-between; gap:14px; text-decoration:none; transition:opacity .15s; }
+  .ted-card:hover { opacity:0.9; }
+  .ted-label { font-size:10px; font-weight:600; color:#636366; letter-spacing:1.5px; text-transform:uppercase; }
+  .ted-title { font-size:14px; font-weight:500; color:#F5F5F7; line-height:1.5; }
+  .ted-btn { display:inline-flex; align-items:center; gap:8px; background:#E53935; color:#fff; font-size:12px; font-weight:500; padding:8px 16px; border-radius:20px; width:fit-content; font-family:'Noto Sans KR',sans-serif; }
+
+  /* 진행률 */
+  .progress-section { background:#fff; border:1px solid #E5E5EA; border-radius:16px; padding:22px 26px; margin-bottom:32px; }
+  .prog-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
+  .prog-title { font-size:13px; font-weight:600; color:#1D1D1F; }
+  .prog-count { font-size:13px; font-weight:600; color:#1D9E75; }
+  .prog-bar-bg { height:6px; background:#F2F2F7; border-radius:3px; overflow:hidden; margin-bottom:12px; }
+  .prog-bar-fill { height:6px; background:#1D9E75; border-radius:3px; transition:width .4s ease; }
+  .prog-stats { display:flex; gap:20px; }
+  .prog-stat { text-align:center; }
+  .prog-stat-num { font-size:20px; font-weight:600; color:#1D1D1F; }
+  .prog-stat-lbl { font-size:10px; color:#86868B; margin-top:2px; }
+
+  /* 주차별 탭 */
+  .week-tabs { display:flex; gap:8px; margin-bottom:20px; flex-wrap:wrap; }
+  .tab-btn { padding:7px 18px; border-radius:20px; font-size:12px; font-weight:500; cursor:pointer; border:1px solid #E5E5EA; background:#fff; color:#86868B; font-family:'Noto Sans KR',sans-serif; transition:all .15s; }
+  .tab-btn.active { background:#1D9E75; border-color:#1D9E75; color:#fff; }
+  .tab-btn:hover:not(.active) { background:#F5F5F7; }
+
+  /* 챌린지 카드 그리드 */
+  .challenge-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-bottom:32px; }
+  .challenge-item { background:#fff; border:1px solid #E5E5EA; border-radius:12px; padding:14px 16px; display:flex; gap:12px; align-items:flex-start; cursor:pointer; transition:border-color .15s, background .15s; }
+  .challenge-item.done { background:#F0FBF6; border-color:#B8E8D4; }
+  .challenge-item:hover { border-color:#C8C8C8; }
+  .day-check { width:22px; height:22px; border:1.5px solid #E5E5EA; border-radius:6px; flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:all .15s; margin-top:1px; }
+  .challenge-item.done .day-check { background:#1D9E75; border-color:#1D9E75; }
+  .check-icon { font-size:12px; opacity:0; transition:opacity .15s; }
+  .challenge-item.done .check-icon { opacity:1; }
+  .day-content { flex:1; }
+  .day-num { font-size:10px; font-weight:600; color:#86868B; letter-spacing:0.5px; margin-bottom:4px; }
+  .challenge-item.done .day-num { color:#1D9E75; }
+  .day-text { font-size:12.5px; color:#3A3A3C; line-height:1.6; font-weight:300; }
+  .challenge-item.done .day-text { color:#0F6E50; }
+
+  /* 추후 과제 */
+  .followup-section { margin-bottom:28px; }
+  .section-label { font-size:11px; font-weight:600; color:#1D9E75; letter-spacing:2px; text-transform:uppercase; margin-bottom:16px; }
+  .followup-cards { display:flex; flex-direction:column; gap:10px; }
+  .followup-card { background:#fff; border:1px solid #E5E5EA; border-radius:12px; padding:16px 20px; display:flex; gap:14px; align-items:flex-start; cursor:pointer; transition:border-color .15s; }
+  .followup-card.done { background:#F0FBF6; border-color:#B8E8D4; }
+  .followup-card:hover { border-color:#C8C8C8; }
+  .followup-check { width:22px; height:22px; border:1.5px solid #E5E5EA; border-radius:6px; flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:all .15s; margin-top:1px; }
+  .followup-card.done .followup-check { background:#1D9E75; border-color:#1D9E75; }
+  .followup-text { font-size:13px; color:#3A3A3C; line-height:1.6; font-weight:300; }
+  .followup-card.done .followup-text { color:#0F6E50; }
+
+  /* 마무리 카드 */
+  .closing-card { background:#1D1D1F; border-radius:18px; padding:32px 36px; text-align:center; }
+  .closing-quote { font-size:18px; font-weight:500; color:#F5F5F7; line-height:1.6; letter-spacing:-0.3px; margin-bottom:16px; }
+  .closing-quote span { color:#A8F0D0; }
+  .closing-sub { font-size:13px; color:#636366; font-weight:300; line-height:1.7; }
+  .closing-sub strong { color:#86868B; font-weight:500; }
+
+  .tip-bar { background:#FFF9E6; border:1px solid #FFE5A0; border-radius:12px; padding:14px 20px; margin-bottom:28px; display:flex; gap:12px; align-items:flex-start; }
+  .tip-bar-text { font-size:13px; color:#6B5200; line-height:1.6; font-weight:300; }
+  .tip-bar-text strong { font-weight:500; color:#4A3800; }
+
+  .footer { text-align:center; padding:36px 0 20px; font-size:11px; color:#C7C7CC; }
+
+  .week-panel { display:none; }
+  .week-panel.active { display:block; }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <a class="nav-back" href="index.html">← 메인으로</a>
+  <div class="nav-title">28일 거절 챌린지</div>
+  <div class="nav-brand">USANA MAMA</div>
+</div>
+
+<div class="container">
+
+  <!-- 헤더 -->
+  <div class="page-header">
+    <div class="header-label">USANA MAMA · Challenge</div>
+    <div class="header-title">"아니요"를 <span>성장의 원동력</span>으로</div>
+    <div class="header-sub">거절을 극복하는 28일 챌린지 — Rejection Challenge</div>
+    <div class="header-body">
+      <div class="header-desc">
+        거절은 더 많이 직면할수록 <strong>두려움도 줄어듭니다.</strong><br><br>
+        이 28일 챌린지는 "아니요"라는 말을 더 자주 듣고 그로부터 배움으로써 거절을 극복하고, 세일즈 문구를 더 다듬으며 <strong>자신감을 회복</strong>할 수 있도록 개발된 프로그램입니다.
+      </div>
+      <a class="ted-card" href="https://www.ted.com/talks/jia_jiang_what_i_learned_from_100_days_of_rejection" target="_blank">
+        <div>
+          <div class="ted-label">🎥 먼저 시청하세요</div>
+          <div class="ted-title">What I Learned from 100 Days of Rejection<br><span style="color:#636366;font-size:12px;">Jia Jiang · TED Talk</span></div>
+        </div>
+        <div class="ted-btn">▶️ TED 강연 보기</div>
+      </a>
+    </div>
+
+    <div class="tip-bar">
+      <div>💡</div>
+      <div class="tip-bar-text"><strong>활용 팁</strong> — 상대에게 자신이 28일 챌린지를 수행하고 있음을 알려주세요. 분위기를 가볍게 하여 요청하는 것이 더 쉬워집니다!</div>
+    </div>
+  </div>
+
+  <!-- 진행률 -->
+  <div class="progress-section">
+    <div class="prog-header">
+      <div class="prog-title">📊 나의 챌린지 진행률</div>
+      <div class="prog-count"><span id="done-count">0</span> / 28일 완료</div>
+    </div>
+    <div class="prog-bar-bg"><div class="prog-bar-fill" id="prog-fill" style="width:0%"></div></div>
+    <div class="prog-stats">
+      <div class="prog-stat"><div class="prog-stat-num" id="stat-done">0</div><div class="prog-stat-lbl">완료</div></div>
+      <div class="prog-stat"><div class="prog-stat-num" id="stat-left">28</div><div class="prog-stat-lbl">남은 일수</div></div>
+      <div class="prog-stat"><div class="prog-stat-num" id="stat-pct">0%</div><div class="prog-stat-lbl">달성률</div></div>
+    </div>
+  </div>
+
+  <!-- 주차 탭 -->
+  <div class="week-tabs">
+    <button class="tab-btn active" onclick="showWeek(1,this)">1주차 (1~7일)</button>
+    <button class="tab-btn" onclick="showWeek(2,this)">2주차 (8~14일)</button>
+    <button class="tab-btn" onclick="showWeek(3,this)">3주차 (15~21일)</button>
+    <button class="tab-btn" onclick="showWeek(4,this)">4주차 (22~28일)</button>
+  </div>
+
+  <!-- 1주차 -->
+  <div class="week-panel active" id="week-1">
+    <div class="challenge-grid" id="grid-1"></div>
+  </div>
+  <!-- 2주차 -->
+  <div class="week-panel" id="week-2">
+    <div class="challenge-grid" id="grid-2"></div>
+  </div>
+  <!-- 3주차 -->
+  <div class="week-panel" id="week-3">
+    <div class="challenge-grid" id="grid-3"></div>
+  </div>
+  <!-- 4주차 -->
+  <div class="week-panel" id="week-4">
+    <div class="challenge-grid" id="grid-4"></div>
+  </div>
+
+  <!-- 추후 과제 -->
+  <div class="followup-section">
+    <div class="section-label">✅ 추후 과제</div>
+    <div class="followup-cards" id="followup-list"></div>
+  </div>
+
+  <!-- 마무리 -->
+  <div class="closing-card">
+    <div class="closing-quote">"아니요"라는 대답은 모두<br><span>"예"에 조금 더 가까워지기 위한 발걸음</span>입니다.</div>
+    <div class="closing-sub">도전을 멈추지 마세요. 내성을 키워보세요.<br><strong>당신이라면 할 수 있습니다.</strong></div>
+  </div>
+
+  <div class="footer">USANA MAMA · Wellness Consultant · True Health · True Life</div>
+</div>
+
+<script>
+const CHALLENGES = [
+  "낯선 사람에게 자신의 제품을 구매해주기를 요청합니다.",
+  "지역 업체를 방문하여 제품 프레젠테이션을 해도 좋을지 물어봅니다.",
+  "누군가의 소셜 미디어에 나의 유사나 세일즈 여정을 소개해줄 수 없는지 물어봅니다.",
+  "소셜 미디어 라이브 방송을 계획하고 제품을 소개합니다. 시청자에게 최소 한 가지 제품을 구매해달라고 요청합니다.",
+  "소셜 미디어상의 낯선 사람 5명에게 유사나 기회를 소개하는 메시지를 전송합니다.",
+  "친구나 가족에게 사람을 소개해달라고 부탁합니다.",
+  "커피숍이나 공원에서 낯선 사람에게 제품 데모를 제안합니다.",
+  "누군가에게 제품 파티나 온라인 이벤트를 개최해주기를 요청합니다.",
+  "제품이 필요하지 않을 것 같은 사람에게 제품 판매를 시도해봅니다.",
+  "제품을 아직 구매하지 않은 사람에게 제품 리뷰를 부탁합니다.",
+  "한동안 연락이 없었던 잠재고객과 다시 연결합니다.",
+  "인플루언서에게 제품 칭찬이나 콜라보를 요청합니다.",
+  "회의적인 생각을 가진 친구에게 유사나 기회를 소개합니다.",
+  "목록에 있는 연락처 5명에게 전화하여 제품 판매를 시도합니다.",
+  "누군가에게 나의 유사나 게시물에 좋아요·공유·댓글을 달아주기를 요청합니다.",
+  "처음부터 대량 구매를 요청해봅니다.",
+  "전문가나 인플루언서에게 협력할 의사가 없는지 이메일을 전송해봅니다.",
+  "경쟁자에게 제품 칭찬을 부탁해봅니다.",
+  "신규 고객에게 Subscribe & Save(자동주문) 프로그램 등록을 추천합니다.",
+  "낯선 사람에게 유사나를 소개하고 \"어떻게 하면 이 제품을 구매하실 것 같으신가요?\"라고 물어봅니다.",
+  "네트워킹 이벤트에 참석하여 5명에게 팀 가입 의향이 없는지 물어봅니다.",
+  "소셜 미디어에 진심으로 솔직한 제품 여론조사를 게시합니다.",
+  "낯선 사람에게 셀라비브 제품 사용 전·후 사진 모델이 되어주기를 요청합니다.",
+  "헬스클럽이나 웰니스 스튜디오에 광고지 배치나 간단한 이벤트 개최를 문의합니다.",
+  "상점에서 확성기를 사용하여 유사나 제품 판매를 발표해도 좋은지 물어봅니다.",
+  "낯선 사람에게 그들의 집에서 유사나 파티를 열어줄 수 있는지 물어봅니다.",
+  "누군가에게 소셜 미디어로 언박싱 라이브를 해줄 수 있는지 물어봅니다.",
+  "오늘 모든 고객에게 바이오메가를 권장하여 구매하도록 설득해봅니다."
+];
+
+const FOLLOWUPS = [
+  "가장 두려웠던 경험에 기초하여 나만의 거절 챌린지 프로그램을 만들어봅니다.",
+  "팀원들과 최악의 거절 스토리와 그로부터 무엇을 배웠는지 공유합니다.",
+  "28일 챌린지 완료 후 나만의 \"아니요\" 일지를 작성하고 패턴을 분석합니다."
+];
+
+let state = JSON.parse(localStorage.getItem('rejection_state') || '{}');
+
+function buildGrid() {
+  for(let w=1;w<=4;w++){
+    const grid = document.getElementById('grid-'+w);
+    grid.innerHTML='';
+    for(let d=(w-1)*7;d<w*7;d++){
+      const i=d;
+      const done = !!state['day_'+i];
+      const item = document.createElement('div');
+      item.className='challenge-item'+(done?' done':'');
+      item.innerHTML=`
+        <div class="day-check"><span class="check-icon">✓</span></div>
+        <div class="day-content">
+          <div class="day-num">DAY ${i+1}</div>
+          <div class="day-text">${CHALLENGES[i]}</div>
+        </div>`;
+      item.onclick=()=>toggle('day_'+i, item);
+      grid.appendChild(item);
+    }
+  }
+  const fl = document.getElementById('followup-list');
+  fl.innerHTML='';
+  FOLLOWUPS.forEach((t,i)=>{
+    const done=!!state['fu_'+i];
+    const card=document.createElement('div');
+    card.className='followup-card'+(done?' done':'');
+    card.innerHTML=`
+      <div class="followup-check"><span class="check-icon" style="font-size:12px;opacity:${done?1:0}">✓</span></div>
+      <div class="followup-text">${t}</div>`;
+    card.onclick=()=>toggleFU('fu_'+i,card);
+    fl.appendChild(card);
+  });
+  updateProgress();
+}
+
+function toggle(key, el) {
+  state[key]=!state[key];
+  el.classList.toggle('done');
+  el.querySelector('.day-check').style.background=state[key]?'#1D9E75':'';
+  el.querySelector('.day-check').style.borderColor=state[key]?'#1D9E75':'';
+  el.querySelector('.check-icon').style.opacity=state[key]?1:0;
+  save(); updateProgress();
+}
+
+function toggleFU(key, el) {
+  state[key]=!state[key];
+  el.classList.toggle('done');
+  el.querySelector('.followup-check').style.background=state[key]?'#1D9E75':'';
+  el.querySelector('.followup-check').style.borderColor=state[key]?'#1D9E75':'';
+  el.querySelector('.check-icon').style.opacity=state[key]?1:0;
+  save();
+}
+
+function updateProgress() {
+  const done=Object.keys(state).filter(k=>k.startsWith('day_')&&state[k]).length;
+  const pct=Math.round(done/28*100);
+  document.getElementById('done-count').textContent=done;
+  document.getElementById('stat-done').textContent=done;
+  document.getElementById('stat-left').textContent=28-done;
+  document.getElementById('stat-pct').textContent=pct+'%';
+  document.getElementById('prog-fill').style.width=pct+'%';
+}
+
+function save() { localStorage.setItem('rejection_state',JSON.stringify(state)); }
+
+function showWeek(w,btn) {
+  document.querySelectorAll('.week-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('week-'+w).classList.add('active');
+  btn.classList.add('active');
+}
+
+buildGrid();
+</script>
+</body>
+</html>

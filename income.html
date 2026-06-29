@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>USANA MAMA — 후원수당 현황</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Noto Sans KR','Inter',-apple-system,sans-serif;background:#F5F5F7;color:#1D1D1F;-webkit-font-smoothing:antialiased;}
+  .top-nav{background:#fff;border-bottom:1px solid #E5E5EA;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+  .nav-brand{font-size:11px;font-weight:500;color:#1D9E75;letter-spacing:2px;}
+  .nav-title{font-size:15px;font-weight:600;color:#1D1D1F;}
+  .nav-back{font-size:12px;color:#86868B;text-decoration:none;}
+  .nav-back:hover{color:#1D9E75;}
+  .container{max-width:800px;margin:0 auto;padding:52px 24px 64px;}
+
+  .page-header{margin-bottom:40px;}
+  .header-label{font-size:11px;font-weight:500;color:#1D9E75;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;}
+  .header-title{font-size:32px;font-weight:600;color:#1D1D1F;letter-spacing:-1px;line-height:1.2;margin-bottom:8px;}
+  .header-sub{font-size:14px;color:#86868B;font-weight:300;line-height:1.6;}
+
+  /* 출처 배너 */
+  .source-bar{background:#F5F5F7;border:1px solid #E5E5EA;border-radius:10px;padding:12px 18px;margin-bottom:36px;display:flex;align-items:center;justify-content:space-between;}
+  .source-text{font-size:12px;color:#86868B;font-weight:300;}
+  .source-text strong{font-weight:500;color:#3A3A3C;}
+  .source-link{font-size:11px;color:#1D9E75;text-decoration:none;}
+  .source-link:hover{text-decoration:underline;}
+
+  /* 섹션 */
+  .section{margin-bottom:36px;}
+  .section-title{font-size:13px;font-weight:600;color:#1D1D1F;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid #E5E5EA;}
+  .section-label{font-size:11px;font-weight:500;color:#1D9E75;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px;}
+
+  /* 주요 지표 카드 */
+  .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px;}
+  .stat-card{background:#fff;border:1px solid #E5E5EA;border-radius:14px;padding:20px;}
+  .stat-num{font-size:26px;font-weight:600;color:#1D1D1F;line-height:1;margin-bottom:4px;letter-spacing:-0.5px;}
+  .stat-label{font-size:12px;color:#86868B;font-weight:300;line-height:1.5;}
+  .stat-note{font-size:11px;color:#C7C7CC;margin-top:6px;}
+
+  /* 테이블 */
+  .table-wrap{background:#fff;border:1px solid #E5E5EA;border-radius:14px;overflow:hidden;}
+  table{width:100%;border-collapse:collapse;}
+  thead th{background:#FAFAFA;padding:11px 18px;text-align:left;font-size:10px;font-weight:600;color:#86868B;letter-spacing:0.8px;text-transform:uppercase;border-bottom:1px solid #E5E5EA;}
+  thead th:not(:first-child){text-align:right;}
+  tbody td{padding:12px 18px;font-size:13px;color:#3A3A3C;font-weight:300;border-bottom:0.5px solid #F2F2F7;}
+  tbody tr:last-child td{border-bottom:none;}
+  tbody td:not(:first-child){text-align:right;}
+  tbody tr:hover td{background:#FAFAFA;}
+  .td-main{font-weight:500;color:#1D1D1F;}
+  .td-green{color:#1D9E75;font-weight:500;}
+  .td-gray{color:#C7C7CC;}
+
+  /* 바 차트 */
+  .bar-section{background:#fff;border:1px solid #E5E5EA;border-radius:14px;padding:22px 24px;}
+  .bar-row{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
+  .bar-row:last-child{margin-bottom:0;}
+  .bar-label{font-size:12px;color:#3A3A3C;font-weight:300;width:110px;flex-shrink:0;text-align:right;}
+  .bar-track{flex:1;height:6px;background:#F2F2F7;border-radius:3px;overflow:hidden;}
+  .bar-fill{height:6px;border-radius:3px;background:#1D9E75;transition:width 1s ease;}
+  .bar-val{font-size:12px;font-weight:500;color:#1D1D1F;width:80px;flex-shrink:0;}
+  .bar-sub{font-size:11px;color:#86868B;width:100px;flex-shrink:0;text-align:right;}
+
+  /* 비고 박스 */
+  .note-box{background:#F5F5F7;border-radius:12px;padding:16px 20px;margin-top:16px;}
+  .note-text{font-size:12.5px;color:#3A3A3C;line-height:1.8;font-weight:300;}
+  .note-text strong{font-weight:500;color:#1D1D1F;}
+
+  /* 법령 박스 */
+  .law-box{background:#fff;border:1px solid #E5E5EA;border-radius:14px;padding:20px 24px;}
+  .law-row{display:flex;gap:16px;align-items:flex-start;padding:10px 0;border-bottom:0.5px solid #F2F2F7;}
+  .law-row:last-child{border-bottom:none;}
+  .law-label{font-size:11px;font-weight:600;color:#1D9E75;width:120px;flex-shrink:0;padding-top:2px;}
+  .law-text{font-size:12.5px;color:#3A3A3C;font-weight:300;line-height:1.6;}
+
+  /* 전체 다단계 박스 */
+  .market-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+
+  .divider{border:none;border-top:1px solid #E5E5EA;margin:36px 0;}
+
+  .footer{text-align:center;padding:36px 0 20px;font-size:11px;color:#C7C7CC;}
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <a class="nav-back" href="index.html">← 메인으로</a>
+  <div class="nav-title">후원수당 공개 현황</div>
+  <div class="nav-brand">USANA MAMA</div>
+</div>
+
+<div class="container">
+
+  <div class="page-header">
+    <div class="header-label">USANA MAMA · 공정위 공개 자료</div>
+    <div class="header-title">유사나 후원수당 현황</div>
+    <div class="header-sub">공정거래위원회 공식 공개 자료를 기반으로 정리한 국내 수당 지급 현황입니다.<br>방문판매법 제13조 제6항에 따라 다단계판매업자는 매년 주요정보를 의무 공개합니다.</div>
+  </div>
+
+  <div class="source-bar">
+    <div class="source-text">출처: <strong>공정거래위원회</strong> 다단계판매업자 주요정보 공개 (2023.7 / 2024.7 / 2025.7 발표)</div>
+    <a class="source-link" href="https://www.ftc.go.kr/www/selectBizMtlvlInfoList.do?key=210" target="_blank">공정위 원문 확인</a>
+  </div>
+
+  <!-- 유사나 코리아 현황 -->
+  <div class="section">
+    <div class="section-label">유사나헬스사이언스코리아 현황</div>
+
+    <div class="stat-grid" style="margin-bottom:20px;">
+      <div class="stat-card">
+        <div class="stat-num">1,519억</div>
+        <div class="stat-label">2022년 연간 매출액<br>(국내 다단계 업계 7위)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">1,061억</div>
+        <div class="stat-label">2024년 연간 매출액<br>(전년 대비 -20% 감소)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">196,197명</div>
+        <div class="stat-label">2022년 기준<br>국내 등록 판매원 수</div>
+      </div>
+    </div>
+
+    <!-- 후원수당 수령 현황 -->
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>구분</th>
+            <th>인원</th>
+            <th>전체 대비 비율</th>
+            <th>수당 금액</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-main">전체 등록 판매원</td>
+            <td>196,197명</td>
+            <td>100%</td>
+            <td class="td-gray">—</td>
+          </tr>
+          <tr>
+            <td class="td-main">후원수당 수령 판매원</td>
+            <td>약 17,855명</td>
+            <td class="td-green">9.1%</td>
+            <td class="td-gray">—</td>
+          </tr>
+          <tr>
+            <td class="td-main">후원수당 미수령 판매원</td>
+            <td>약 178,342명</td>
+            <td>90.9%</td>
+            <td>0원</td>
+          </tr>
+          <tr>
+            <td class="td-main">연 2,000만원 이상 수령자</td>
+            <td>424명</td>
+            <td>0.216%</td>
+            <td class="td-green">전체 수당의 62% 수령</td>
+          </tr>
+          <tr>
+            <td class="td-main">연 1억원 이상 수령자</td>
+            <td>69명</td>
+            <td>0.035%</td>
+            <td class="td-green">전체 수당의 33.5% 수령</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note-box" style="margin-top:12px;">
+      <div class="note-text">
+        2022년 기준 유사나의 후원수당 수령 판매원 비율 <strong>9.1%</strong>는 상위 10개 다단계사업자 평균 <strong>20.6%</strong>의 절반 이하로, 상위 10개사 중 유일하게 한 자리수를 기록했습니다. 후원수당 총지급액 약 <strong>523억원</strong> 중 상위 0.216%(424명)가 62% 이상을 수령했습니다.<br><br>
+        <strong>참고:</strong> 유사나는 방문판매법상 매출액의 35% 이내 지급 기준은 준수하고 있습니다.
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 국내 다단계 전체 수당 분포 -->
+  <div class="section">
+    <div class="section-label">국내 다단계 전체 후원수당 분포 (2024년 공정위 공개)</div>
+
+    <div class="stat-grid" style="margin-bottom:20px;">
+      <div class="stat-card">
+        <div class="stat-num">687만명</div>
+        <div class="stat-label">전체 등록 판매원 수<br>(전년 대비 -4.6%)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">16.7%</div>
+        <div class="stat-label">후원수당 1회 이상<br>수령한 판매원 비율</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">131만원</div>
+        <div class="stat-label">수령자 평균 연간 수당<br>(수령자 기준)</div>
+      </div>
+    </div>
+
+    <div class="bar-section">
+      <div style="font-size:11px;font-weight:600;color:#86868B;letter-spacing:1px;text-transform:uppercase;margin-bottom:18px;">수령자 구간별 연간 평균 후원수당</div>
+      <div class="bar-row">
+        <div class="bar-label">상위 1% 미만</div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+        <div class="bar-val">7,016만원/년</div>
+        <div class="bar-sub">1만 1,514명</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">상위 1~6%</div>
+        <div class="bar-track"><div class="bar-fill" style="width:10.3%"></div></div>
+        <div class="bar-val">721만원/년</div>
+        <div class="bar-sub">5만 7,832명</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">상위 6~30%</div>
+        <div class="bar-track"><div class="bar-fill" style="width:1.1%"></div></div>
+        <div class="bar-val">80만원/년</div>
+        <div class="bar-sub">27만 7,968명</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">하위 70%</div>
+        <div class="bar-track"><div class="bar-fill" style="width:0.11%;background:#C7C7CC;"></div></div>
+        <div class="bar-val" style="color:#86868B;">8만원/년</div>
+        <div class="bar-sub">80만 9,416명</div>
+      </div>
+    </div>
+
+    <div class="note-box" style="margin-top:12px;">
+      <div class="note-text">
+        2024년 기준 후원수당을 한 번이라도 받은 판매원은 전체의 <strong>16.7%</strong>에 그쳤습니다. 나머지 <strong>83.3%</strong>는 연간 수당을 전혀 받지 못했습니다. 수당을 받은 판매원 중에서도 상위 1%(1만 1,514명)가 전체 지급 총액의 <strong>53.5%</strong>인 8,079억원을 가져갔습니다.
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 연도별 유사나 추이 -->
+  <div class="section">
+    <div class="section-label">유사나 코리아 연도별 매출 추이</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>연도</th>
+            <th>매출액</th>
+            <th>업계 순위</th>
+            <th>전년 대비</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-main">2021년</td>
+            <td>약 1,590억원</td>
+            <td>7위</td>
+            <td class="td-gray">—</td>
+          </tr>
+          <tr>
+            <td class="td-main">2022년</td>
+            <td>1,519억원</td>
+            <td>7위</td>
+            <td class="td-gray">소폭 감소</td>
+          </tr>
+          <tr>
+            <td class="td-main">2023년</td>
+            <td>1,323억원</td>
+            <td>7~8위</td>
+            <td style="color:#CC0000;">-12.9%</td>
+          </tr>
+          <tr>
+            <td class="td-main">2024년</td>
+            <td>1,061억원</td>
+            <td>10위권</td>
+            <td style="color:#CC0000;">-19.8%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 관련 법령 -->
+  <div class="section">
+    <div class="section-label">관련 법령 안내</div>
+    <div class="law-box">
+      <div class="law-row">
+        <div class="law-label">정보 공개 의무</div>
+        <div class="law-text">방문판매법 제13조 제6항 및 시행령 제22조에 따라 다단계판매업자는 매년 공정거래위원회에 매출액, 후원수당 등 주요정보를 의무적으로 공개해야 합니다.</div>
+      </div>
+      <div class="law-row">
+        <div class="law-label">수당 지급 한도</div>
+        <div class="law-text">방문판매법 제20조 제3항에 따라 다단계판매업자는 총 매출액의 35%를 초과하여 후원수당을 지급할 수 없습니다. 이를 초과하는 수당 지급 약속 또는 지급은 법 위반에 해당합니다.</div>
+      </div>
+      <div class="law-row">
+        <div class="law-label">환불 보장</div>
+        <div class="law-text">구매일로부터 30일 이내 미사용 제품에 대해 100% 환불 또는 교환이 가능하며, 1년 이내 재판매 가능한 상태의 제품도 100% 환불(배송비 제외)됩니다.</div>
+      </div>
+      <div class="law-row">
+        <div class="law-label">탈퇴 권리</div>
+        <div class="law-text">어소시에이트는 언제든지, 어떤 이유로든 유사나 사업을 종료할 수 있습니다.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#F5F5F7;border-radius:14px;padding:20px 24px;margin-top:8px;">
+    <div style="font-size:12px;color:#86868B;line-height:1.8;font-weight:300;">
+      본 페이지는 공정거래위원회 공식 공개 자료를 기반으로 작성되었습니다. 개별 판매원의 수당은 활동 수준, 팀 구성, 시장 상황에 따라 상이하며, 본 자료의 수치는 특정 수입을 보장하지 않습니다. 사업 참여 전 공정위 홈페이지(ftc.go.kr)에서 최신 공개 정보를 직접 확인하시기 바랍니다.
+    </div>
+  </div>
+
+  <div class="footer">USANA MAMA · Wellness Consultant · True Health · True Life</div>
+</div>
+
+<script>
+// 바 차트 애니메이션
+window.addEventListener('load', () => {
+  document.querySelectorAll('.bar-fill').forEach(b => {
+    const w = b.style.width;
+    b.style.width = '0';
+    setTimeout(() => { b.style.width = w; }, 300);
+  });
+});
+</script>
+</body>
+</html>

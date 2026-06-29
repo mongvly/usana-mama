@@ -5,38 +5,150 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>USANA MAMA — 비즈니스 가이드</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600&display=swap');
   *{margin:0;padding:0;box-sizing:border-box;}
-  body{font-family:'Noto Sans KR',sans-serif;background:#F5F5F7;min-height:100vh;display:flex;align-items:center;justify-content:center;}
-  .wrap{width:460px;padding:48px 0;}
-  .brand{font-size:11px;font-weight:500;color:#1D9E75;letter-spacing:3px;text-align:center;margin-bottom:12px;}
-  h1{font-size:26px;font-weight:600;color:#1D1D1F;text-align:center;letter-spacing:-0.5px;margin-bottom:8px;}
-  .sub{font-size:13px;color:#86868B;text-align:center;font-weight:300;margin-bottom:40px;}
-  .cards{display:flex;flex-direction:column;gap:12px;}
-  .card{background:#fff;border-radius:16px;border:1px solid #E5E5EA;padding:20px 24px;text-decoration:none;display:flex;align-items:center;gap:16px;transition:box-shadow .2s,transform .2s;}
-  .card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.08);transform:translateY(-2px);}
-  .card-icon{font-size:24px;flex-shrink:0;}
-  .card-title{font-size:14px;font-weight:600;color:#1D1D1F;margin-bottom:3px;}
-  .card-desc{font-size:11.5px;color:#86868B;font-weight:300;line-height:1.5;}
-  .card-tag{display:inline-block;font-size:10px;font-weight:500;padding:2px 8px;border-radius:10px;background:#E1F5EE;color:#1D9E75;margin-top:5px;}
-  .footer{text-align:center;margin-top:28px;font-size:11px;color:#C7C7CC;}
+  body{font-family:'Noto Sans KR',sans-serif;background:#F5F5F7;min-height:100vh;-webkit-font-smoothing:antialiased;}
+  .page{max-width:640px;margin:0 auto;padding:56px 24px 64px;}
+
+  /* 헤더 */
+  .header{text-align:center;margin-bottom:48px;}
+  .brand{font-size:11px;font-weight:500;color:#1D9E75;letter-spacing:3px;margin-bottom:14px;}
+  .title{font-size:30px;font-weight:600;color:#1D1D1F;letter-spacing:-0.8px;margin-bottom:8px;}
+  .sub{font-size:14px;color:#86868B;font-weight:300;}
+  .divider{width:40px;height:1.5px;background:#E5E5EA;margin:20px auto 0;}
+
+  /* 섹션 */
+  .section{margin-bottom:32px;}
+  .section-header{margin-bottom:14px;}
+  .section-title{font-size:11px;font-weight:600;color:#86868B;letter-spacing:2px;text-transform:uppercase;}
+  .section-desc{font-size:12px;color:#C7C7CC;font-weight:300;margin-top:3px;}
+
+  /* 2열 그리드 */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+
+  /* 카드 */
+  .card{background:#fff;border-radius:14px;border:1px solid #E5E5EA;padding:18px 20px;text-decoration:none;display:flex;flex-direction:column;gap:10px;transition:box-shadow .2s,transform .15s;cursor:pointer;}
+  .card:hover{box-shadow:0 4px 16px rgba(0,0,0,0.07);transform:translateY(-2px);}
+  .card-top{display:flex;align-items:center;gap:12px;}
+  .card-icon{width:36px;height:36px;border-radius:10px;background:#F5F5F7;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+  .card-title{font-size:13.5px;font-weight:600;color:#1D1D1F;line-height:1.3;}
+  .card-desc{font-size:11.5px;color:#86868B;font-weight:300;line-height:1.55;}
+  .card-tag{display:inline-block;font-size:10px;font-weight:500;padding:2px 8px;border-radius:8px;background:#F0FBF6;color:#1D9E75;width:fit-content;}
+
+  /* 넓은 카드 (1열 전체) */
+  .card.wide{grid-column:1/-1;flex-direction:row;align-items:center;gap:16px;}
+  .card.wide .card-icon{width:40px;height:40px;font-size:20px;flex-shrink:0;}
+  .card.wide .card-body{flex:1;}
+  .card.wide .card-title{font-size:14px;}
+
+  .footer{text-align:center;margin-top:36px;font-size:11px;color:#C7C7CC;}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="brand">USANA MAMA</div>
-  <h1>비즈니스 가이드</h1>
-  <div class="sub">True Health · True Life</div>
-  <div class="cards">
-    <a class="card" href="onboarding.html"><div class="card-icon">📋</div><div><div class="card-title">고객 온보딩 가이드</div><div class="card-desc">한 번의 고객을 평생 파트너로</div><span class="card-tag">4단계 온보딩</span></div></a>
-    <a class="card" href="pacesetter.html"><div class="card-icon">🏆</div><div><div class="card-title">페이스세터 여정 플래너</div><div class="card-desc">목표를 정하고 모든 노력을 다 해보세요</div><span class="card-tag">목표 + 약속 = 결과</span></div></a>
-    <a class="card" href="leads.html"><div class="card-icon">🌿</div><div><div class="card-title">잠재고객 관리시트</div><div class="card-desc">연락처 & 상태 관리 · CSV 저장 지원</div><span class="card-tag">데이터 자동 저장</span></div></a>
-    <a class="card" href="milestone.html"><div class="card-icon">🎯</div><div><div class="card-title">마일스톤 보너스 달성</div><div class="card-desc">3단계 마일스톤으로 페이스세터까지</div><span class="card-tag">13주 여정</span></div></a>
-    <a class="card" href="rejection.html"><div class="card-icon">💪</div><div><div class="card-title">28일 거절 챌린지</div><div class="card-desc">"아니요"를 성장의 원동력으로</div><span class="card-tag">진행률 자동 저장</span></div></a>
-    <a class="card" href="bizplan.html"><div class="card-icon">🏪</div><div><div class="card-title">비즈니스 센터 수익 구조</div><div class="card-desc">7가지 시나리오 × 원화 환산</div><span class="card-tag">인포그래픽 · 7시나리오</span></div></a>
-    <a class="card" href="checklist.html"><div class="card-icon">✅</div><div><div class="card-title">마일스톤 완료 체크리스트</div><div class="card-desc">단계별 달성 확인 · 페이스세터까지</div><span class="card-tag">3단계 체크리스트</span></div></a>
-    <a class="card" href="income.html"><div class="card-icon">📊</div><div><div class="card-title">후원수당 공개 현황</div><div class="card-desc">공정거래위원회 공식 자료 기반 국내 수당 현황</div><span class="card-tag">공정위 공개 데이터</span></div></a>
+<div class="page">
+
+  <!-- 헤더 -->
+  <div class="header">
+    <div class="brand">USANA MAMA</div>
+    <div class="title">비즈니스 가이드</div>
+    <div class="sub">True Health · True Life</div>
+    <div class="divider"></div>
   </div>
+
+  <!-- 섹션 1: 운영 관리 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">운영 관리</div>
+      <div class="section-desc">고객 관리 · 잠재고객 추적</div>
+    </div>
+    <div class="grid">
+      <a class="card" href="onboarding.html">
+        <div class="card-top">
+          <div class="card-icon">📋</div>
+          <div class="card-title">고객 온보딩 가이드</div>
+        </div>
+        <div class="card-desc">한 번의 고객을 평생 파트너로 · 4단계 흐름</div>
+        <div class="card-tag">4단계 온보딩</div>
+      </a>
+      <a class="card" href="leads.html">
+        <div class="card-top">
+          <div class="card-icon">🌿</div>
+          <div class="card-title">잠재고객 관리시트</div>
+        </div>
+        <div class="card-desc">연락처 & 상태 관리 · CSV 저장 지원</div>
+        <div class="card-tag">데이터 자동 저장</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- 섹션 2: 성장 플래닝 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">성장 플래닝</div>
+      <div class="section-desc">목표 설정 · 마일스톤 달성</div>
+    </div>
+    <div class="grid">
+      <a class="card" href="pacesetter.html">
+        <div class="card-top">
+          <div class="card-icon">🏆</div>
+          <div class="card-title">페이스세터 여정 플래너</div>
+        </div>
+        <div class="card-desc">소득 목표 · 주간 실행 계획 수립</div>
+        <div class="card-tag">목표 + 약속 = 결과</div>
+      </a>
+      <a class="card" href="milestone.html">
+        <div class="card-top">
+          <div class="card-icon">🎯</div>
+          <div class="card-title">마일스톤 보너스 달성</div>
+        </div>
+        <div class="card-desc">3단계 마일스톤 · 13주 페이스세터 여정</div>
+        <div class="card-tag">체크리스트 포함</div>
+      </a>
+      <a class="card" href="checklist.html">
+        <div class="card-top">
+          <div class="card-icon">✅</div>
+          <div class="card-title">마일스톤 완료 체크리스트</div>
+        </div>
+        <div class="card-desc">단계별 달성 확인 · 진행률 자동 저장</div>
+        <div class="card-tag">3단계 체크리스트</div>
+      </a>
+      <a class="card" href="rejection.html">
+        <div class="card-top">
+          <div class="card-icon">💪</div>
+          <div class="card-title">28일 거절 챌린지</div>
+        </div>
+        <div class="card-desc">"아니요"를 성장의 원동력으로</div>
+        <div class="card-tag">진행률 자동 저장</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- 섹션 3: 수익 이해 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">수익 이해</div>
+      <div class="section-desc">비즈니스 구조 · 수당 현황</div>
+    </div>
+    <div class="grid">
+      <a class="card" href="bizplan.html">
+        <div class="card-top">
+          <div class="card-icon">🏪</div>
+          <div class="card-title">비즈니스 센터 수익 구조</div>
+        </div>
+        <div class="card-desc">7가지 시나리오 × 원화 환산 인포그래픽</div>
+        <div class="card-tag">인포그래픽 · 7시나리오</div>
+      </a>
+      <a class="card" href="income.html">
+        <div class="card-top">
+          <div class="card-icon">📊</div>
+          <div class="card-title">후원수당 공개 현황</div>
+        </div>
+        <div class="card-desc">공정거래위원회 공식 자료 기반</div>
+        <div class="card-tag">공정위 공개 데이터</div>
+      </a>
+    </div>
+  </div>
+
   <div class="footer">USANA MAMA · Wellness Consultant</div>
 </div>
 </body>

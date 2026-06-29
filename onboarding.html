@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>유사나마마 — 고객 온보딩 가이드</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans KR', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #F5F5F7;
+    color: #1D1D1F;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    width: 794px;
+    min-height: 1123px;
+    margin: 40px auto;
+    background: #FFFFFF;
+    padding: 64px 64px 48px;
+    position: relative;
+  }
+
+  /* ── 헤더 ── */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 52px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #E5E5EA;
+  }
+  .header-left {}
+  .brand { font-size: 11px; font-weight: 500; color: #1D9E75; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+  .page-title { font-size: 28px; font-weight: 600; color: #1D1D1F; letter-spacing: -0.5px; line-height: 1.2; }
+  .page-sub { font-size: 14px; color: #86868B; margin-top: 6px; font-weight: 300; }
+  .header-right { text-align: right; }
+  .header-num { font-size: 48px; font-weight: 200; color: #E5E5EA; letter-spacing: -2px; line-height: 1; }
+  .header-num-lbl { font-size: 10px; color: #86868B; letter-spacing: 1px; margin-top: 2px; }
+
+  /* ── 인트로 ── */
+  .intro {
+    background: #F5F5F7;
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 48px;
+  }
+  .intro p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #3A3A3C;
+    font-weight: 300;
+  }
+  .intro strong { font-weight: 500; color: #1D1D1F; }
+
+  /* ── 섹션 제목 ── */
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: #1D9E75;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  /* ── 타임라인 스텝 ── */
+  .timeline { position: relative; margin-bottom: 48px; }
+  .timeline-track {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 32px;
+  }
+  .tl-step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  .tl-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    width: 100%;
+    height: 1px;
+    background: #E5E5EA;
+    z-index: 0;
+  }
+  .tl-dot {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #F5F5F7;
+    border: 1.5px solid #E5E5EA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: #86868B;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 10px;
+  }
+  .tl-dot.active {
+    background: #1D9E75;
+    border-color: #1D9E75;
+    color: white;
+  }
+  .tl-title { font-size: 12px; font-weight: 500; color: #1D1D1F; text-align: center; }
+  .tl-sub { font-size: 10px; color: #86868B; text-align: center; margin-top: 2px; }
+
+  /* ── 스텝 카드 ── */
+  .step-card {
+    border: 1px solid #E5E5EA;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 28px;
+    border-bottom: 1px solid #F2F2F7;
+  }
+  .step-num {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #1D9E75;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .step-title-wrap {}
+  .step-title { font-size: 15px; font-weight: 600; color: #1D1D1F; }
+  .step-timing { font-size: 11px; color: #86868B; margin-top: 2px; }
+  .step-body { padding: 20px 28px; }
+  .step-items { display: flex; flex-direction: column; gap: 14px; }
+  .step-item { display: flex; gap: 14px; align-items: flex-start; }
+  .step-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .step-text { font-size: 13px; color: #3A3A3C; line-height: 1.6; font-weight: 300; }
+  .step-text strong { font-weight: 500; color: #1D1D1F; }
+
+  /* ── 2컬럼 ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  .col-card {
+    border: 1px solid #E5E5EA;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .col-header {
+    padding: 16px 22px;
+    border-bottom: 1px solid #F2F2F7;
+  }
+  .col-header-title { font-size: 13px; font-weight: 600; color: #1D1D1F; }
+  .col-header-sub { font-size: 10px; color: #86868B; margin-top: 2px; letter-spacing: 0.5px; }
+  .col-body { padding: 18px 22px; display: flex; flex-direction: column; gap: 12px; }
+  .col-item { display: flex; gap: 10px; align-items: flex-start; }
+  .col-dot { width: 5px; height: 5px; border-radius: 50%; background: #1D9E75; flex-shrink: 0; margin-top: 6px; }
+  .col-text { font-size: 12px; color: #3A3A3C; line-height: 1.6; font-weight: 300; }
+
+  /* ── 핵심 팁 ── */
+  .tip-card {
+    background: #1D1D1F;
+    border-radius: 20px;
+    padding: 36px 40px;
+    margin-bottom: 0;
+  }
+  .tip-label { font-size: 10px; font-weight: 600; color: #1D9E75; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+  .tip-title { font-size: 20px; font-weight: 600; color: #F5F5F7; margin-bottom: 28px; letter-spacing: -0.3px; }
+  .tip-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .tip-item {}
+  .tip-item-title { font-size: 12px; font-weight: 600; color: #1D9E75; margin-bottom: 6px; letter-spacing: 0.3px; }
+  .tip-item-text { font-size: 12px; color: #86868B; line-height: 1.7; font-weight: 300; }
+
+  /* ── 푸터 ── */
+  .footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid #E5E5EA;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-brand { font-size: 11px; color: #86868B; font-weight: 400; }
+  .footer-tag { font-size: 11px; color: #C7C7CC; font-style: italic; }
+
+  /* 인쇄 */
+  @media print {
+    body { background: white; }
+    .page { margin: 0; box-shadow: none; width: 100%; }
+  }
+
+  @media screen {
+    .page { box-shadow: 0 4px 40px rgba(0,0,0,0.06); border-radius: 4px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<div class="page">
+
+  <div class="header">
+    <div class="header-left">
+      <div class="brand">USANA MAMA</div>
+      <div class="page-title">고객 온보딩 가이드</div>
+      <div class="page-sub">한 번의 고객을 평생 파트너로 — Customer Onboarding Guide</div>
+    </div>
+    <div class="header-right">
+      <div class="header-num">01</div>
+      <div class="header-num-lbl">PAGE</div>
+    </div>
+  </div>
+
+  <div class="intro">
+    <p>
+      등록만이 끝이 아닙니다. <strong>지속적인 교육과 간단한 메시지, 개인적 유대감</strong>이
+      한 번의 고객을 평생 고객으로, 나아가 소중한 팀원으로 만드는 힘입니다.<br>
+      모든 고객을 한 번의 거래 대상이 아닌, <strong>장기적인 파트너</strong>로 대하세요.
+    </p>
+  </div>
+
+  <div class="section-label">온보딩 흐름 — 4단계</div>
+  <div class="timeline">
+    <div class="timeline-track">
+      <div class="tl-step">
+        <div class="tl-dot active">1</div>
+        <div class="tl-title">등록 직후</div>
+        <div class="tl-sub">24~48시간</div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-dot active">2</div>
+        <div class="tl-title">배송 대기</div>
+        <div class="tl-sub">배송 기간 중</div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-dot active">3</div>
+        <div class="tl-title">도착 확인</div>
+        <div class="tl-sub">제품 도착 후</div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-dot active">4</div>
+        <div class="tl-title">루틴 지원</div>
+        <div class="tl-sub">매주 & 월간</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">1</div>
+      <div class="step-title-wrap">
+        <div class="step-title">등록 직후</div>
+        <div class="step-timing">등록 후 24~48시간 이내</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <div class="step-items">
+        <div class="step-item">
+          <div class="step-icon">💬</div>
+          <div class="step-text">따뜻한 <strong>환영 메시지</strong>를 24~48시간 이내에 전송합니다.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-icon">🌿</div>
+          <div class="step-text">개인 활용 팁, 유사나 리소스, <strong>추천 제품</strong>을 함께 포함합니다.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-icon">❓</div>
+          <div class="step-text">고객이 <strong>가장 관심 있는 제품</strong>이 무엇인지 직접 물어봅니다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">2</div>
+      <div class="step-title-wrap">
+        <div class="step-title">배송 대기</div>
+        <div class="step-timing">고객이 제품을 기다리는 동안</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <div class="step-items">
+        <div class="step-item">
+          <div class="step-icon">📹</div>
+          <div class="step-text">제품 가이드 또는 소개 <strong>비디오를 공유</strong>합니다.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-icon">🎯</div>
+          <div class="step-text">가장 중요한 <strong>건강 목표를 기록</strong>하도록 권장합니다.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-icon">📞</div>
+          <div class="step-text">제품 도착 시 <strong>소개 통화 일정</strong>을 미리 잡아둡니다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">3</div>
+      <div class="step-title-wrap">
+        <div class="step-title">제품 도착 확인</div>
+        <div class="step-timing">첫 사용 시작 단계</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <div class="step-items">
+        <div class="step-item">
+          <div class="step-icon">📋</div>
+          <div class="step-text">매일 사용하는 방법을 <strong>차근차근 설명</strong>합니다.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-icon">💚</div>
+          <div class="step-text"><strong>"바로 큰 변화는 없을 수 있어요. 가장 중요한 건 꾸준히 사용하시는 거예요."</strong> — 안심 메시지를 전달합니다.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-icon">👥</div>
+          <div class="step-text">고객 그룹 또는 <strong>소셜 미디어 채팅 그룹</strong>에 초대합니다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-brand">USANA MAMA · Wellness Consultant</div>
+    <div class="footer-tag">True Health · True Life</div>
+  </div>
+
+</div>
+
+<!-- PAGE 2 -->
+<div class="page">
+
+  <div class="header">
+    <div class="header-left">
+      <div class="brand">USANA MAMA</div>
+      <div class="page-title">루틴 지원 & 핵심 원칙</div>
+      <div class="page-sub">지속적인 관계로 평생 고객을 만드는 방법</div>
+    </div>
+    <div class="header-right">
+      <div class="header-num">02</div>
+      <div class="header-num-lbl">PAGE</div>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step-card" style="margin-bottom:32px">
+    <div class="step-header">
+      <div class="step-num">4</div>
+      <div class="step-title-wrap">
+        <div class="step-title">건강 관리 루틴 지원</div>
+        <div class="step-timing">매주 정기 케어</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <div class="step-items">
+        <div class="step-item">
+          <div class="step-icon">📩</div>
+          <div class="step-text">매주 <strong>메시지나 이메일</strong>로 따뜻하게 인사를 전합니다.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-icon">✨</div>
+          <div class="step-text">고객이 느끼기 시작할 수 있는 <strong>건강 혜택을 강조</strong>합니다.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-icon">💡</div>
+          <div class="step-text">함께 쓰면 좋은 <strong>제품 추천과 활용 팁</strong>을 제안합니다.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-icon">🎉</div>
+          <div class="step-text">유사나 <strong>이벤트 정보를 공유</strong>하고 함께 참여를 권유합니다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">정기 케어 — 월간 & 주기적</div>
+
+  <div class="two-col">
+    <div class="col-card">
+      <div class="col-header">
+        <div class="col-header-title">월간  Monthly</div>
+        <div class="col-header-sub">매달 진행할 액션</div>
+      </div>
+      <div class="col-body">
+        <div class="col-item">
+          <div class="col-dot"></div>
+          <div class="col-text">만족한 고객에게 <strong>스토리 공유</strong>를 자연스럽게 권유합니다.</div>
+        </div>
+        <div class="col-item">
+          <div class="col-dot"></div>
+          <div class="col-text">로열티 포인트 또는 <strong>비즈니스 시작법</strong>을 안내합니다.</div>
+        </div>
+        <div class="col-item">
+          <div class="col-dot"></div>
+          <div class="col-text">최신 <strong>프로모션 & 신제품</strong> 소식을 전달합니다.</div>
+        </div>
+        <div class="col-item">
+          <div class="col-dot"></div>
+          <div class="col-text">꾸준한 사용을 위한 <strong>웰니스 리소스</strong>를 제공합니다.</div>
+        </div>
+        <div class="col-item">
+          <div class="col-dot"></div>
+          <div class="col-text">공유 활동이 <strong>자연스럽게</strong> 일어나도록 유도합니다.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-card">
+      <div class="col-header">
+        <div class="col-header-title">주기적  Periodic</div>
+        <div class="col-header-sub">수시로 진행할 액션</div>
+      </div>
+      <div class="col-body">
+        <div class="col-item">
+          <div class="col-dot"></div>
+          <div class="col-text">메시지·전화·음성 메시지로 <strong>연락을 유지</strong>합니다.</div>
+        </div>
+        <div class="col-item">
+          <div class="col-dot"></div>
+          <div class="col-text">목표 기반 <strong>새로운 웰니스 루틴</strong>을 제안합니다.</div>
+        </div>
+        <div class="col-item">
+          <div class="col-dot"></div>
+          <div class="col-text">간단한 <strong>웰니스 교육</strong>으로 제품 신뢰도를 높입니다.</div>
+        </div>
+        <div class="col-item">
+          <div class="col-dot"></div>
+          <div class="col-text">장기 미주문 고객에게 <strong>조심스럽게 재연락</strong>합니다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 핵심 팁 다크 카드 -->
+  <div class="tip-card">
+    <div class="tip-label">Core Principles</div>
+    <div class="tip-title">잊지 말아야 할 핵심 원칙</div>
+    <div class="tip-grid">
+      <div class="tip-item">
+        <div class="tip-item-title">고객 최우선</div>
+        <div class="tip-item-text">고객은 모든 유사나 비즈니스의 기본입니다. 시작부터 밀접한 관계를 쌓아가세요.</div>
+      </div>
+      <div class="tip-item">
+        <div class="tip-item-title">장기 파트너십</div>
+        <div class="tip-item-text">모든 고객을 한 번의 거래 대상이 아닌 장기적인 파트너처럼 대합니다.</div>
+      </div>
+      <div class="tip-item">
+        <div class="tip-item-title">꾸준한 교육</div>
+        <div class="tip-item-text">지속적인 교육을 통해 고객이 제품을 믿고 꾸준히 사용할 수 있도록 합니다.</div>
+      </div>
+      <div class="tip-item">
+        <div class="tip-item-title">개인적 터치</div>
+        <div class="tip-item-text">개별 연락을 유지하고, 고객의 목표에 귀 기울이며, 성과를 함께 축하합니다.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-brand">USANA MAMA · Wellness Consultant</div>
+    <div class="footer-tag">True Health · True Life</div>
+  </div>
+
+</div>
+
+</body>
+</html>
